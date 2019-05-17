@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="tutorialLabel" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Classes.TutorialSceneController">
+   <children>
+      <Button layoutX="100.0" layoutY="400.0" mnemonicParsing="false" onAction="#previousSlide" prefHeight="40.0" prefWidth="90.0" text="Back" textFill="#068fff">
+         <font>
+            <Font size="13.0" />
+         </font>
+          <effect>
+              <Lighting diffuseConstant="2.0" specularConstant="0.7" surfaceScale="1.34">
+                  <bumpInput>
+                      <Shadow />
+                  </bumpInput>
+              </Lighting>
+          </effect>
+      </Button>
+      <Button layoutX="500.0" layoutY="400.0" mnemonicParsing="false" onAction="#nextSlide" prefHeight="40.0" prefWidth="90.0" text="Forward" textFill="#068fff">
+         <font>
+            <Font size="13.0" />
+         </font>
+          <effect>
+              <Lighting diffuseConstant="2.0" specularConstant="0.7" surfaceScale="1.34">
+                  <bumpInput>
+                      <Shadow />
+                  </bumpInput>
+              </Lighting>
+          </effect>
+      </Button>
+      <ImageView fx:id="tutorialImage" fitHeight="300.0" fitWidth="200.0" layoutX="45.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="tutorialLabel" alignment="CENTER" layoutX="250.0" layoutY="50.0" prefHeight="300.0" prefWidth="400.0" text="Label" textAlignment="JUSTIFY" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+   </children>
+</AnchorPane>
