@@ -4,9 +4,11 @@ import javafx.scene.image.Image;
 
 public class Slides {
 
+    /*  FIELDS  */
     private Image slideImage;
     private String slideExplanation;
 
+    /*  METHODS */
     Slides(String stringToAssign, Image imageToAssign) {
         super();
         slideImage = imageToAssign;

@@ -12,6 +12,18 @@
 
 <AnchorPane id="startScreen" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main">
    <children>
+      <Button contentDisplay="CENTER" layoutX="112.0" layoutY="372.0" mnemonicParsing="false" onAction="#startTestEvent" prefHeight="41.0" prefWidth="104.0" text="Test">
+         <font>
+            <Font size="13.0" />
+         </font>
+         <effect>
+            <Lighting diffuseConstant="2.0" specularConstant="0.7" surfaceScale="1.34">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+            </Lighting>
+         </effect>
+      </Button>
       <Label layoutX="267.0" layoutY="129.0" text="AlgaT" textAlignment="RIGHT" textFill="#1998cf">
          <font>
             <Font name="System Bold" size="46.0" />
@@ -27,7 +39,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button contentDisplay="CENTER" layoutX="298.0" layoutY="366.0" mnemonicParsing="false" onAction="#startTutorialEvent" prefHeight="41.0" prefWidth="104.0" text="Start now">
+      <Button contentDisplay="CENTER" layoutX="459.0" layoutY="372.0" mnemonicParsing="false" onAction="#startTutorialEvent" prefHeight="41.0" prefWidth="104.0" text="Tutorial">
          <font>
             <Font size="13.0" />
          </font>

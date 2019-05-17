@@ -1,5 +1,6 @@
 /* AlgaT Projects made by Enea Guidi, Marco Tomasone and Luca Genova */
 
+/* IMPORT */
 import Classes.AlertBox;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -8,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import java.io.IOException;
 
 public class Main extends Application {
 
@@ -15,6 +17,7 @@ public class Main extends Application {
     private static Stage currentWindow;
     private static Scene welcomeScene;
     private static Scene tutorialScene;
+    private static Scene testScene;
 
     /* METHODS */
     public static void main(String[] args) {
@@ -28,14 +31,14 @@ public class Main extends Application {
         }
     }
 
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
         currentWindow = primaryStage;
         Parent startScreen = FXMLLoader.load(getClass().getResource("UI/Welcome.fxml"));
         setupWelcomeScene(currentWindow, startScreen);
         currentWindow.show();
     }
 
-    public static void setupWelcomeScene(Stage window, Parent startScreen) {
+    public void setupWelcomeScene(Stage window, Parent startScreen) {
         window.getIcons().add(new Image("Images/appLogo.png"));
         welcomeScene = new Scene(startScreen);
         window.setTitle("AlgaT");
@@ -47,5 +50,13 @@ public class Main extends Application {
         Parent tutorialLayout = FXMLLoader.load(getClass().getResource("UI/TutorialScene.fxml"));
         tutorialScene = new Scene(tutorialLayout);
         currentWindow.setScene(tutorialScene);
+    }
+
+    public void startTestEvent(ActionEvent event) throws Exception {
+        System.out.println("Test button clicked");
+        Parent testLayout = FXMLLoader.load(getClass().getResource("UI/TestLayout1.fxml"));
+        new AlertBox("You couldn't go back once there"); //Da rimuovere poi
+        testScene = new Scene(testLayout);
+        currentWindow.setScene(testScene);
     }
 }

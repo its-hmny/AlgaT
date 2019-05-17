@@ -1,16 +1,19 @@
 package Classes;
 
+/*  IMPORTS */
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AlertBox {
     public AlertBox(String messageError) {
         //Creates the stage
         Stage windowError = new Stage();
+        windowError.initModality(Modality.APPLICATION_MODAL);
         windowError.setTitle("Error goddamn");
         windowError.setMinWidth(400);
         windowError.setMinHeight(200);
