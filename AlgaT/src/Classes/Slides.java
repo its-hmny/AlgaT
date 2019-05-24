@@ -5,26 +5,29 @@ import javafx.scene.image.Image;
 public class Slides {
 
     /*  FIELDS  */
-    private Image slideImage;
-    private String slideExplanation;
+    private Image picture;
+    private String text;
 
     /*  METHODS */
     Slides(String stringToAssign, Image imageToAssign) {
         super();
-        slideImage = imageToAssign;
-        slideExplanation = stringToAssign;
+        picture = imageToAssign;
+        text = stringToAssign;
     }
 
-    //Returns true if a image should be present in the Slides
     public boolean containsImage() {
-        return(slideImage != null);
+        return(picture != null);
     }
 
-    public Image getSlideImage() {
-        return(slideImage);
+    public boolean containsText() {
+        return((text == " ") || (text == ""));
     }
 
-    public String getSlideExplanation() {
-        return(slideExplanation);
+    public Image getPicture() {
+        return(picture);
+    }
+
+    public String getText() {
+        return(text);
     }
 }

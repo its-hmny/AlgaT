@@ -35,6 +35,7 @@ public class Main extends Application {
         currentWindow = primaryStage;
         Parent startScreen = FXMLLoader.load(getClass().getResource("UI/Welcome.fxml"));
         setupWelcomeScene(currentWindow, startScreen);
+        currentWindow.setOnCloseRequest(e->closeWindow());
         currentWindow.show();
     }
 
@@ -55,8 +56,13 @@ public class Main extends Application {
     public void startTestEvent(ActionEvent event) throws Exception {
         System.out.println("Test button clicked");
         Parent testLayout = FXMLLoader.load(getClass().getResource("UI/TestLayout1.fxml"));
-        new AlertBox("You couldn't go back once there"); //Da rimuovere poi
+        new AlertBox("You should take the tutorial first!");
         testScene = new Scene(testLayout);
         currentWindow.setScene(testScene);
+    }
+
+    public void closeWindow() {
+        //new AlertBox("Are you sure to exit?");
+        System.out.println("Users closed the application...");
     }
 }
