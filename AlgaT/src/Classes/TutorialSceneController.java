@@ -127,7 +127,7 @@ public class TutorialSceneController implements Initializable {
                 } else {
                     //If the previous slide contained an Image then it move the label to the center
                     if (SlideList.get(currentIndex + 1).containsImage())
-                        tutorialLabel.setTranslateX(0);
+                        tutorialLabel.setTranslateX(-100);
                     tutorialLabel.setText(previousSlide.getText());
                     tutorialImage.setImage(previousSlide.getPicture());
                 }

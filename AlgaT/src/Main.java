@@ -15,9 +15,6 @@ public class Main extends Application {
 
     /*  FIELDS  */
     private static Stage currentWindow;
-    private static Scene welcomeScene;
-    private static Scene tutorialScene;
-    private static Scene testScene;
 
     /* METHODS */
     public static void main(String[] args) {
@@ -35,13 +32,13 @@ public class Main extends Application {
         currentWindow = primaryStage;
         Parent startScreen = FXMLLoader.load(getClass().getResource("UI/Welcome.fxml"));
         setupWelcomeScene(currentWindow, startScreen);
-        currentWindow.setOnCloseRequest(e->closeWindow());
+        currentWindow.setOnCloseRequest(e->System.out.println("User closed the application"));
         currentWindow.show();
     }
 
     public void setupWelcomeScene(Stage window, Parent startScreen) {
         window.getIcons().add(new Image("Images/appLogo.png"));
-        welcomeScene = new Scene(startScreen);
+        Scene welcomeScene = new Scene(startScreen);
         window.setTitle("AlgaT");
         window.setScene(welcomeScene);
     }
@@ -49,7 +46,7 @@ public class Main extends Application {
     public void startTutorialEvent(ActionEvent event) throws Exception{
         System.out.println("Start button clicked!");
         Parent tutorialLayout = FXMLLoader.load(getClass().getResource("UI/TutorialScene.fxml"));
-        tutorialScene = new Scene(tutorialLayout);
+        Scene tutorialScene = new Scene(tutorialLayout);
         currentWindow.setScene(tutorialScene);
     }
 
@@ -57,12 +54,14 @@ public class Main extends Application {
         System.out.println("Test button clicked");
         Parent testLayout = FXMLLoader.load(getClass().getResource("UI/TestLayout1.fxml"));
         new AlertBox("You should take the tutorial first!");
-        testScene = new Scene(testLayout);
+        Scene testScene = new Scene(testLayout);
         currentWindow.setScene(testScene);
     }
 
-    public void closeWindow() {
-        //new AlertBox("Are you sure to exit?");
-        System.out.println("Users closed the application...");
+    public void startSimulator(ActionEvent event) throws Exception {
+        System.out.println("Simulator button clicked");
+        Parent simulatorLayout = FXMLLoader.load(getClass().getResource("UI/Simulator.fxml"));
+        Scene simulatorScene = new Scene(simulatorLayout);
+        currentWindow.setScene(simulatorScene);
     }
 }

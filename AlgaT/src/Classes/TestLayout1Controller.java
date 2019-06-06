@@ -93,7 +93,6 @@ public class TestLayout1Controller implements Initializable {
                 e.printStackTrace();
             }
         } else {
-            //Set an error label
             wrongSolution.setText("Incorrect! Please try again");
         }
     }
