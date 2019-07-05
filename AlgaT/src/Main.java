@@ -43,24 +43,20 @@ public class Main extends Application {
         window.setScene(welcomeScene);
     }
 
-    public void startTutorialEvent(ActionEvent event) throws Exception{
-        System.out.println("Start button clicked!");
+    public void startTutorial(ActionEvent event) throws Exception{
         Parent tutorialLayout = FXMLLoader.load(getClass().getResource("UI/TutorialScene.fxml"));
         Scene tutorialScene = new Scene(tutorialLayout);
         currentWindow.setScene(tutorialScene);
     }
 
-    public void startTestEvent(ActionEvent event) throws Exception {
-        System.out.println("Test button clicked");
-        Parent testLayout = FXMLLoader.load(getClass().getResource("UI/TestLayout1.fxml"));
-        new AlertBox("You should take the tutorial first!");
-        Scene testScene = new Scene(testLayout);
-        currentWindow.setScene(testScene);
+    public void startSimulator(ActionEvent event) throws Exception {
+        Parent simulatorLayout = FXMLLoader.load(getClass().getResource("UI/Simulator.fxml"));
+        Scene simulatorScene = new Scene(simulatorLayout);
+        currentWindow.setScene(simulatorScene);
     }
 
-    public void startSimulator(ActionEvent event) throws Exception {
-        System.out.println("Simulator button clicked");
-        Parent simulatorLayout = FXMLLoader.load(getClass().getResource("UI/Simulator.fxml"));
+    public void startTests(ActionEvent event) throws Exception {
+        Parent simulatorLayout = FXMLLoader.load(getClass().getResource("UI/TestDispatcher.fxml"));
         Scene simulatorScene = new Scene(simulatorLayout);
         currentWindow.setScene(simulatorScene);
     }

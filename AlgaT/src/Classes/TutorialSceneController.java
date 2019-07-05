@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import java.io.File;
 import java.net.URL;
@@ -21,9 +22,9 @@ import java.util.Scanner;
 public class TutorialSceneController implements Initializable {
 
     /*  FIELDS  */
-    private static Integer currentIndex;
-    private static Integer maxIndex;
-    private static LinkedList<Slides> SlideList;
+    private Integer currentIndex = 0;
+    private Integer maxIndex;
+    private LinkedList<Slides> SlideList;
     @FXML private Label tutorialLabel;
     @FXML private ImageView tutorialImage;
 
@@ -31,14 +32,16 @@ public class TutorialSceneController implements Initializable {
     @Override   //Takes care of setting up the first "Slide" of the tutorial and the whole list
     public void initialize(URL location, ResourceBundle resources) {
         SlideList = new LinkedList<Slides>();
-        currentIndex = 0;
+        //currentIndex = 0;
+
         try {
             setupList(new File(getClass().getResource("../TextFile/TutorialExplanation.txt").getFile()));
         } catch (Exception e) {
             new AlertBox("There's a bug scanning TutorialExplanation");
             e.printStackTrace();
         }
-        //La prima diapositiva deve per forza essere con immagine
+        tutorialLabel.setFont(new Font("Verdana", 15));
+        //TODO La prima diapositiva deve per forza essere con immagine
         tutorialLabel.setText(SlideList.get(currentIndex).getText());
         tutorialImage.setImage(SlideList.get(currentIndex).getPicture());
     }
@@ -78,8 +81,7 @@ public class TutorialSceneController implements Initializable {
         try {
             if(currentIndex >= maxIndex) {
                 //Load test screen
-                new AlertBox("The tutorial is finished. Now you can make a little test to see if you understood");
-                Parent test1Layout = FXMLLoader.load(getClass().getResource("../UI/TestLayout1.fxml"));
+                Parent test1Layout = FXMLLoader.load(getClass().getResource("../UI/Finished.fxml"));
                 Scene toSetUp = new Scene(test1Layout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);

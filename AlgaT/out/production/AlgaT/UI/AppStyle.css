@@ -6,6 +6,11 @@
     -fx-font-weight: bold;
 }
 
+.button:pressed, .button:default:hover:pressed {
+    -fx-background-color: lightblue;
+    -fx-text-fill: white;
+}
+
 .choice-box{
     -fx-background-color: #0e9ef7;
     -fx-background-radius: 50;
@@ -45,6 +50,20 @@
 .progress-bar .track{
     -fx-background-color: white;
     -fx-box-border: white;
+}
+
+#my-rectangle{
+    -fx-fill: #0e9ef7;
+    -fx-text-fill: white;
+    -fx-stroke: white;
+    -fx-font: bold;
+}
+
+#my-circle{
+    -fx-fill: #0e9ef7;
+    -fx-text-fill: white;
+    -fx-stroke: white;
+    -fx-font: bold;
 }
 
    .choice-box .context-menu { -fx-background-color: black; }
