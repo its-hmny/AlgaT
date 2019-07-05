@@ -18,8 +18,8 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <ImageView fx:id="tutorialImage" fitHeight="300.0" fitWidth="200.0" layoutX="45.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="tutorialLabel" alignment="CENTER" layoutX="250.0" layoutY="50.0" prefHeight="300.0" prefWidth="400.0" text="Label" textAlignment="JUSTIFY" wrapText="true">
+      <ImageView fx:id="tutorialImage" fitHeight="300.0" fitWidth="255.0" layoutX="45.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="tutorialLabel" alignment="CENTER" layoutX="300.0" layoutY="50.0" prefHeight="300.0" prefWidth="355.0" text="Label" textAlignment="JUSTIFY" wrapText="true">
          <font>
             <Font size="14.0" />
          </font></Label>

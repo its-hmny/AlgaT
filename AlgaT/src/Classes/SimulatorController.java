@@ -30,7 +30,7 @@ public class SimulatorController implements Initializable {
     @FXML private AnchorPane window;
     @FXML private TextField input;
     private final Integer NIL = -123456;
-    private Integer[] vector = {NIL, 6, 5, 1, NIL, NIL, NIL, NIL}; //I for e le altre funzioni partono da 1
+    private Integer[] vector = {NIL, 6, 5, 7, NIL, NIL, NIL}; //I for e le altre funzioni partono da 1
     private int currentIndex = 3;
     private Pane treeView;
     private HBox arrayView;
@@ -47,7 +47,7 @@ public class SimulatorController implements Initializable {
         window.getChildren().remove(arrayView);
         arrayView = new HBox(10);
         drawArray();
-        arrayView.relocate(100,325);
+        arrayView.relocate(130,325);
         window.getChildren().add(arrayView);
 
         //Draw the HeapTree
@@ -147,10 +147,6 @@ public class SimulatorController implements Initializable {
             new AlertBox("The vector must contains at least one element");
     }
 
-    public void HeapSortPressed(ActionEvent e) {
-        heapSort(currentIndex);
-    }
-
     public void deleteMax() {
         if (currentIndex > 1) {
             swap(1, currentIndex);
@@ -158,7 +154,6 @@ public class SimulatorController implements Initializable {
             currentIndex--;
             maxHeapRestore(1, currentIndex);
         }
-        //drawAll();
     }
 
     public void swap(int i, int Pi) {
@@ -195,20 +190,6 @@ public class SimulatorController implements Initializable {
         if (i != max) {
             swap(i,max);
             maxHeapRestore(max, currentIndex);
-        }
-    }
-
-    public void heapBuild(int n) {
-        for (int i = n / 2; i > 1; i--)
-            maxHeapRestore(i, n);
-    }
-
-    public void heapSort(int n) {
-        heapBuild(n);
-        for (int i = vector.length - 1; i > 2; i--) {
-            int tmp;
-            swap(i,1);
-            maxHeapRestore(1, i - 1);
         }
     }
 }

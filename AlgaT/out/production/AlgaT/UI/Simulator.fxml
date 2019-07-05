@@ -8,7 +8,6 @@
 <AnchorPane fx:id="window" prefHeight="500.0" prefWidth="700.0" stylesheets="@AppStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Classes.SimulatorController">
     <children>
         <Button layoutX="25.0" layoutY="424.0" mnemonicParsing="false" onAction="#moveBack" prefHeight="40.0" prefWidth="90.0" text="Home" />
-        <Button layoutX="165.0" layoutY="424.0" mnemonicParsing="false" onAction="#HeapSortPressed" prefHeight="40.0" prefWidth="90.0" text="HeapSort" />
         <Button layoutX="305.0" layoutY="424.0" mnemonicParsing="false" onAction="#removePressed" prefHeight="40.0" prefWidth="90.0" text="Remove" />
         <Button layoutX="445.0" layoutY="424.0" mnemonicParsing="false" onAction="#insertPressed" prefHeight="40.0" prefWidth="90.0" text="Insert" />
         <TextField fx:id="input" layoutX="585.0" layoutY="424.0" prefHeight="40.0" prefWidth="90.0">

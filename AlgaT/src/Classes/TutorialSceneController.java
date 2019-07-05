@@ -22,17 +22,20 @@ import java.util.Scanner;
 public class TutorialSceneController implements Initializable {
 
     /*  FIELDS  */
-    private Integer currentIndex = 0;
+    private Integer currentIndex;
     private Integer maxIndex;
     private LinkedList<Slides> SlideList;
     @FXML private Label tutorialLabel;
     @FXML private ImageView tutorialImage;
 
     /*  METHODS */
-    @Override   //Takes care of setting up the first "Slide" of the tutorial and the whole list
+    @Override
+    //Takes care of setting up the first "Slide" of the tutorial and the whole list
     public void initialize(URL location, ResourceBundle resources) {
         SlideList = new LinkedList<Slides>();
-        //currentIndex = 0;
+        currentIndex = 0;
+        tutorialImage.setPreserveRatio(true);
+        tutorialImage.setSmooth(true);
 
         try {
             setupList(new File(getClass().getResource("../TextFile/TutorialExplanation.txt").getFile()));
@@ -68,8 +71,35 @@ public class TutorialSceneController implements Initializable {
 
     //Takes the position as parameter to determine if load an image or only text
     private void addToList(Integer pos, String description) {
-        if (pos == 0 || pos == 1 || pos == 3) {
-            Image image = new Image(getClass().getResourceAsStream("../Images/appLogo.png"));
+        if (pos == 0) {
+            Image image = new Image(getClass().getResourceAsStream("../Images/firstlesson.jpg"));
+            SlideList.add(pos, new Slides(description, image));
+        } else if (pos == 2) {
+            Image image = new Image(getClass().getResourceAsStream("../Images/properties.jpg"));
+            SlideList.add(pos, new Slides(description, image));
+        } else if (pos == 3) {
+            Image image = new Image(getClass().getResourceAsStream("../Images/Es5.png"));
+            SlideList.add(pos, new Slides(description, image));
+        } else if (pos == 6) {
+            Image image = new Image(getClass().getResourceAsStream("../Images/heapdelete1.gif"));
+            SlideList.add(pos, new Slides(description, image));
+        } else if (pos == 7) {
+            Image image = new Image(getClass().getResourceAsStream("../Images/heapinsertion.gif"));
+            SlideList.add(pos, new Slides(description, image));
+        } else if (pos == 8) {
+            Image image = new Image(getClass().getResourceAsStream("../Images/heaprestore.gif"));
+            SlideList.add(pos, new Slides(description, image));
+        } else if (pos == 9) {
+            Image image = new Image(getClass().getResourceAsStream("../Images/restore().PNG"));
+            SlideList.add(pos, new Slides(description, image));
+        } else if (pos == 10) {
+            Image image = new Image(getClass().getResourceAsStream("../Images/heapSort.png"));
+            SlideList.add(pos, new Slides(description, image));
+        } else if (pos == 13) {
+            Image image = new Image(getClass().getResourceAsStream("../Images/heapBuild.PNG"));
+            SlideList.add(pos, new Slides(description, image));
+        } else if (pos == 14) {
+            Image image = new Image(getClass().getResourceAsStream("../Images/heapsort-pseudocode.PNG"));
             SlideList.add(pos, new Slides(description, image));
         } else
             SlideList.add(pos, new Slides(description, null));
