@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+
 import java.io.File;
 import java.net.URL;
 import java.util.LinkedList;
@@ -43,64 +44,83 @@ public class TutorialSceneController implements Initializable {
             new AlertBox("There's a bug scanning TutorialExplanation");
             e.printStackTrace();
         }
+
         tutorialLabel.setFont(new Font("Verdana", 15));
-        //TODO La prima diapositiva deve per forza essere con immagine
         tutorialLabel.setText(SlideList.get(currentIndex).getText());
         tutorialImage.setImage(SlideList.get(currentIndex).getPicture());
+
     }
 
-    //Setup the list of slides
+    //Setup/creates the list of Slides
     private void setupList(File source) throws Exception {
+
         Integer counter = 0;
         Scanner scanFile = new Scanner(source);
         String paragraph = "";
+
             while (scanFile.hasNextLine()) {
-                String line = scanFile.nextLine();
+                String line = scanFile.nextLine()
+                        ;
                 if(line.contentEquals("##")) {
-                    System.out.println("Paragraph's end reached");
+
                     addToList(counter, paragraph);
                     counter++;
                     paragraph = "";
+
                 } else {
                     paragraph = paragraph.concat(line);
                 }
+
             }
-            maxIndex = counter;
-            scanFile.close();
+
+        maxIndex = counter;
+        scanFile.close();
+
     }
 
     //Takes the position as parameter to determine if load an image or only text
     private void addToList(Integer pos, String description) {
+
         if (pos == 0) {
             Image image = new Image(getClass().getResourceAsStream("../Images/firstlesson.jpg"));
             SlideList.add(pos, new Slides(description, image));
+
         } else if (pos == 2) {
             Image image = new Image(getClass().getResourceAsStream("../Images/properties.jpg"));
             SlideList.add(pos, new Slides(description, image));
+
         } else if (pos == 3) {
             Image image = new Image(getClass().getResourceAsStream("../Images/Es5.png"));
             SlideList.add(pos, new Slides(description, image));
+
         } else if (pos == 6) {
             Image image = new Image(getClass().getResourceAsStream("../Images/heapdelete1.gif"));
             SlideList.add(pos, new Slides(description, image));
+
         } else if (pos == 7) {
             Image image = new Image(getClass().getResourceAsStream("../Images/heapinsertion.gif"));
             SlideList.add(pos, new Slides(description, image));
+
         } else if (pos == 8) {
             Image image = new Image(getClass().getResourceAsStream("../Images/heaprestore.gif"));
             SlideList.add(pos, new Slides(description, image));
+
         } else if (pos == 9) {
             Image image = new Image(getClass().getResourceAsStream("../Images/restore().PNG"));
             SlideList.add(pos, new Slides(description, image));
+
         } else if (pos == 10) {
             Image image = new Image(getClass().getResourceAsStream("../Images/heapSort.png"));
             SlideList.add(pos, new Slides(description, image));
+
         } else if (pos == 13) {
             Image image = new Image(getClass().getResourceAsStream("../Images/heapBuild.PNG"));
             SlideList.add(pos, new Slides(description, image));
+
         } else if (pos == 14) {
             Image image = new Image(getClass().getResourceAsStream("../Images/heapsort-pseudocode.PNG"));
             SlideList.add(pos, new Slides(description, image));
+
         } else
             SlideList.add(pos, new Slides(description, null));
     }
@@ -109,26 +129,34 @@ public class TutorialSceneController implements Initializable {
     public void nextSlide(ActionEvent event) {
         currentIndex++;
         try {
+
+            //Means the lessons is finished, so reload Welcome screen
             if(currentIndex >= maxIndex) {
-                //Load test screen
+
                 Parent test1Layout = FXMLLoader.load(getClass().getResource("../UI/Finished.fxml"));
                 Scene toSetUp = new Scene(test1Layout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);
                 window.show();
+
             } else {
                 Slides nextSlide = SlideList.get(currentIndex);
+
+                //Reset the label to the default position (Not centered but on the right)
                 if (nextSlide.containsImage()) {
-                    //Reset the label to the default position (Not centered but on the right)
+
                     tutorialLabel.setTranslateX(0);
                     tutorialLabel.setText(nextSlide.getText());
                     tutorialImage.setImage(nextSlide.getPicture());
-                } else {
-                    //If the previous slide contained an Image then it move the label to the center
+
+                } else { //If the previous slide contained an Image then it move the label to the center
+
                     if (SlideList.get(currentIndex - 1).containsImage())
                         tutorialLabel.setTranslateX(-100);
+
                     tutorialLabel.setText(nextSlide.getText());
                     tutorialImage.setImage(nextSlide.getPicture());
+
                 }
             }
         } catch (Exception e) {
@@ -142,28 +170,37 @@ public class TutorialSceneController implements Initializable {
     public void previousSlide(ActionEvent event) {
         currentIndex--;
         try {
+
+            //Reload welcome screen
             if (currentIndex < 0) {
-                //Reload welcome screen
+
                 Parent welcomeScreenLayout = FXMLLoader.load(getClass().getResource("../UI/Welcome.fxml"));
                 Scene toSetUp = new Scene(welcomeScreenLayout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);
                 window.show();
+
             } else {
                 Slides previousSlide = SlideList.get(currentIndex);
+
                 //Reset the label to the default position (Not centered but on the right)
                 if (previousSlide.containsImage()) {
+
                     tutorialLabel.setTranslateX(0);
                     tutorialLabel.setText(previousSlide.getText());
                     tutorialImage.setImage(previousSlide.getPicture());
-                } else {
-                    //If the previous slide contained an Image then it move the label to the center
+
+                } else { //If the previous slide contained an Image then it move the label to the center
+
                     if (SlideList.get(currentIndex + 1).containsImage())
                         tutorialLabel.setTranslateX(-100);
+
                     tutorialLabel.setText(previousSlide.getText());
                     tutorialImage.setImage(previousSlide.getPicture());
+
                 }
             }
+            
         } catch (Exception e) {
             currentIndex++;
             new AlertBox("There was a problem moving back!");

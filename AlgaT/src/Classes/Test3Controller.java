@@ -11,11 +11,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Test3Controller implements Initializable {
-    //CON LEFT INDICO TUTTO IL RAMO SINISTRO DALLA RADICE, CON RIGHT IL DESTRO
+
     /* FIELDS */
     @FXML private TextField root; //radice
     @FXML private TextField leftSon; //figlio sinistro (parte SINISTRA dalla radice)
@@ -37,37 +38,50 @@ public class Test3Controller implements Initializable {
         clearTextFields();
     }
 
+    //Loads the next test layout
     public void moveForward(ActionEvent event) {
         if(checkAnswer()) {
             try{
+
                 Parent nextLayout = FXMLLoader.load(getClass().getResource("../UI/Test4.fxml"));
                 Scene toSetUp = new Scene(nextLayout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);
                 window.show();
+
             } catch (Exception e) {
+
+
                 new AlertBox("Error loading the next test");
                 e.printStackTrace();
             }
+
         } else {
             errorMessage.setText("Incorrect! Please try again");
             clearTextFields();
         }
     }
 
+    //Return the previous test layout
     public void moveBack(ActionEvent event) {
+
         try {
+
             Parent prevLayout = FXMLLoader.load(getClass().getResource("../UI/Test2.fxml"));
             Scene toSetUp = new Scene(prevLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);
             window.show();
+
         } catch(Exception e) {
+
             new AlertBox("Error loading the third test exercise");
             e.printStackTrace();
+
         }
     }
 
+    //Check if the answer is correct
     private boolean checkAnswer() {
         errorMessage.setText(" ");
         return(
@@ -89,6 +103,7 @@ public class Test3Controller implements Initializable {
         );
     }
 
+    //Clear all fields from the user's input
     private void clearTextFields() {
         root.clear();
         leftSon.clear();

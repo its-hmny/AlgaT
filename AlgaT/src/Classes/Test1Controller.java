@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -36,7 +37,7 @@ public class Test1Controller implements Initializable {
 
     //This method setup all five the ChoiceBox
     private void setupChoiceBoxes() {
-        Integer toChoose[] = {1,3,5,6,8,9};
+        Integer toChoose[] = {1, 3, 5, 6, 8, 9};
         for (Integer i : toChoose) {
             box1.getItems().add(i);
             box2.getItems().add(i);
@@ -49,7 +50,6 @@ public class Test1Controller implements Initializable {
 
     //This method checks if the answer is correct
     private boolean checkAnswer() {
-        //TODO valutare i valori nei ChoiceBox e ritornare true o false
         return(
                 (box1.getValue() == 1) &&
                 (box2.getValue() == 3) &&
@@ -60,33 +60,43 @@ public class Test1Controller implements Initializable {
         );
     }
 
+    //Load the welcome screen
     public void moveBack(ActionEvent event) {
-        //Load the welcome screen
+
         try {
+
             Parent prevLayout = FXMLLoader.load(getClass().getResource("../UI/TestDispatcher.fxml"));
             Scene toSetUp = new Scene(prevLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);
             window.show();
+
         } catch (Exception e) {
+
             new AlertBox("Error loading the Welcome screen");
             e.printStackTrace();
+
         }
     }
 
+    //Load the next test layout, only if the answer is correct
     public void moveForward(ActionEvent event) {
         if(checkAnswer()) {
-          //Load the TextLayout2.fxml
             try {
+
                 Parent nextLayout = FXMLLoader.load(getClass().getResource("../UI/Test2.fxml"));
                 Scene toSetUp = new Scene(nextLayout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);
                 window.show();
+
             } catch (Exception e) {
+
                 new AlertBox("Error loading the next test quiz");
                 e.printStackTrace();
+
             }
+
         } else {
             wrongSolution.setText("Incorrect! Please try again");
         }

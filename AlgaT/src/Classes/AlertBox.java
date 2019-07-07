@@ -21,7 +21,7 @@ public class AlertBox {
 
         //Initializes the fields
         Label errorMessage = new Label(messageError);
-        errorMessage.setTextAlignment(TextAlignment.CENTER);
+        errorMessage.setTextAlignment(TextAlignment.JUSTIFY);
         errorMessage.setMaxWidth(200);
         errorMessage.setMaxHeight(100);
         errorMessage.setWrapText(true);

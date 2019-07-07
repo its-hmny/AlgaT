@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -39,20 +40,25 @@ public class Test5Controller implements Initializable {
 
     public void moveForward(ActionEvent event) {
         if(checkAnswer()) {
-            try{
+
+            try {
+
                 Parent nextLayout = FXMLLoader.load(getClass().getResource("../UI/TestDispatcher.fxml"));
                 Scene toSetUp = new Scene(nextLayout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);
                 window.show();
+
             } catch (Exception e) {
                 new AlertBox("Error loading the next test");
                 e.printStackTrace();
             }
+
         } else {
             errorMessage.setText("Incorrect! Please try again");
             clearTextFields();
         }
+
     }
 
     public void moveBack(ActionEvent event) {
@@ -68,6 +74,7 @@ public class Test5Controller implements Initializable {
     }
 
     private boolean checkAnswer() {
+
         errorMessage.setText(" ");
         return(
                 //Check all the possible correct inputs
@@ -84,6 +91,7 @@ public class Test5Controller implements Initializable {
                 (rightRightNephew.getCharacters().toString().equals("12")) &&
                 (rightOneGreat_grandson.getCharacters().toString().equals("20"))
         );
+
     }
 
     private void clearTextFields() {

@@ -9,18 +9,17 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Finished implements Initializable {
+public class FinishTestController implements Initializable {
 
     /*  METHODS */
     @Override
     public void initialize(URL location, ResourceBundle resources) {}
 
-    //Change the scene to the welcome screen
     public void returnHome(ActionEvent event) {
+
         try {
 
             Parent nextLayout = FXMLLoader.load(getClass().getResource("../UI/Welcome.fxml"));
@@ -30,10 +29,7 @@ public class Finished implements Initializable {
             window.show();
 
         } catch (Exception e) {
-
             new AlertBox("Error loading the next page");
-            e.printStackTrace();
-
         }
     }
 }

@@ -1,6 +1,6 @@
 package Classes;
 
-/* IMPORT */
+/*  IMPORTS */
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,28 +26,28 @@ import java.util.ResourceBundle;
 
 public class SimulatorController implements Initializable {
 
-    /*  FIELDS  */
+    /*  FIELDS */
     @FXML private AnchorPane window;
     @FXML private TextField input;
-    private final Integer NIL = -123456;
-    private Integer[] vector = {NIL, 6, 5, 7, NIL, NIL, NIL}; //I for e le altre funzioni partono da 1
-    private int currentIndex = 3;
     private Pane treeView;
     private HBox arrayView;
+    private final Integer NIL = -123456;
+    private Integer[] vector = {NIL, 1, 5, 6, NIL, NIL, NIL, NIL};
+    private int currentIndex = 3;
 
-
-    /* METHODS */
+    /*  METHODS */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         drawAll();
     }
 
+    //Draw the Array and HeapTree
     private void drawAll() {
         //Draw the vector
         window.getChildren().remove(arrayView);
         arrayView = new HBox(10);
         drawArray();
-        arrayView.relocate(130,325);
+        arrayView.relocate(100,325);
         window.getChildren().add(arrayView);
 
         //Draw the HeapTree
@@ -60,10 +60,11 @@ public class SimulatorController implements Initializable {
         window.getChildren().add(treeView);
     }
 
+    //Cycles through the array and make the array graphics
     private void drawArray() {
 
-        //Creates the array visual in the main scene
         for(int i = 1; i < vector.length; i++) {
+
             Text tmp1 = new Text();
             tmp1.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
             tmp1.setFill(Color.WHITE);
@@ -72,124 +73,194 @@ public class SimulatorController implements Initializable {
             if(vector[i] == NIL) tmp1.setText("/");
             else tmp1.setText(vector[i].toString());
             arrayView.getChildren().add(i - 1, new StackPane(toAssign, tmp1));
+
         }
 
     }
 
-
+    //Cycles through the array and put every node in the right position (thanks to the offset)
     private void drawTree(int index, double xOld, double yOld, double xNew, double yNew, double offset) {
         if (index < vector.length) {
-            //This two condition check if the current index is a HeapTree node and if is not out of vector length
+
             if (vector[index] != NIL) {
                 double newOffset = offset / 2;
 
                 if ((xOld == 0) && (yOld == 0)) {
 
-                    //Root case, only a circle must be added, no line needed
+
                     drawTree(index * 2, xNew, yNew, xNew - newOffset, yNew + 100, newOffset);
                     drawTree(index * 2 + 1, xNew, yNew, xNew + newOffset, yNew + 100, newOffset);
-                    createCircle(index, xNew, yNew);
+
+                    Circle tmp1 = new Circle(30);
+                    tmp1.setId("my-circle");
+                    Text tmp2 = new Text(vector[index].toString());
+                    tmp2.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+                    tmp2.setFill(Color.WHITE);
+                    StackPane tmp3 = new StackPane(tmp1, tmp2);
+                    tmp3.relocate(xNew, yNew);
+                    tmp3.toFront();
+                    treeView.getChildren().add(tmp3);
 
                 } else {
 
-                    //Non root case, must be added also a line to the parent node
                     Line tmp0 = new Line(xOld + 30, yOld + 30, xNew + 30, yNew + 30);
                     treeView.getChildren().add(tmp0);
+
                     drawTree(index * 2, xNew, yNew, xNew - newOffset, yNew + 100, newOffset);
                     drawTree(index * 2 + 1, xNew, yNew, xNew + newOffset, yNew + 100, newOffset);
-                    createCircle(index, xNew, yNew);
+
+                    Circle tmp1 = new Circle(30);
+                    tmp1.setId("my-circle");
+                    Text tmp2 = new Text(vector[index].toString());
+                    tmp2.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
+                    tmp2.setFill(Color.WHITE);
+                    StackPane tmp3 = new StackPane(tmp1, tmp2);
+                    tmp3.relocate(xNew, yNew);
+                    tmp3.toFront();
+                    treeView.getChildren().add(tmp3);
                 }
             }
         }
     }
 
-    private void createCircle(int index, double x, double y) {
-        Circle tmp1 = new Circle(30);
-        tmp1.setId("my-circle");
-        Text tmp2 = new Text(vector[index].toString());
-        tmp2.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
-        tmp2.setFill(Color.WHITE);
-        StackPane tmp3 = new StackPane(tmp1, tmp2);
-        tmp3.relocate(x, y);
-        tmp3.toFront();
-        treeView.getChildren().add(tmp3);
-    }
-
+    //Load the welcome screen
     public void moveBack(ActionEvent event) {
-        //Load the Welcome/Home screen
+
         try {
+
             Parent prevLayout = FXMLLoader.load(getClass().getResource("../UI/Welcome.fxml"));
             Scene toSetUp = new Scene(prevLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);
             window.show();
+
         } catch (Exception e) {
-            new AlertBox("Error loading home screen");
+
+            new AlertBox("Error loading the Welcome screen");
             e.printStackTrace();
+
         }
     }
 
     public void insertPressed(ActionEvent e) {
+
         if(currentIndex < vector.length - 1) {
+
             String userInput = input.getCharacters().toString();
             Integer toAdd = Integer.valueOf(userInput);
             insert(toAdd);
             input.clear();
-            drawAll();
-        } else new AlertBox("The vector is full");
+
+        } else new AlertBox("The vector is full, please remove at least one element");
     }
 
     public void removePressed(ActionEvent e) {
-        if(currentIndex > 1) {
+        if(currentIndex > 1)
             deleteMax();
-            drawAll();
-        } else
+        else
             new AlertBox("The vector must contains at least one element");
     }
 
-    public void deleteMax() {
+    public void HeapSortPressed(ActionEvent e) {
+        heapSort(currentIndex);
+    }
+
+    //Deletes the node with the higher value, in this case the root of the tree
+    private void deleteMax() {
+
         if (currentIndex > 1) {
+
             swap(1, currentIndex);
             vector[currentIndex]=NIL;
             currentIndex--;
+            pauseAnimation();
             maxHeapRestore(1, currentIndex);
+
         }
+
+        drawAll();
     }
 
-    public void swap(int i, int Pi) {
+    private void swap(int first, int second) {
+
         Integer tmp;
-        tmp = vector[i];
-        vector[i] = vector[Pi];
-        vector[Pi] = tmp;
+        tmp = vector[first];
+        vector[first] = vector[second];
+        vector[second] = tmp;
+
     }
 
-    public void insert(Integer n) {
+    //Inserts a new node in the HeapTree
+    private void insert(Integer n) {
+
         if (currentIndex == 0) {
             currentIndex++;
             vector[currentIndex] = n;
         }
+
         if (currentIndex < vector.length) {
             currentIndex++;
             vector[currentIndex] = n;
-            maxHeapRestore(currentIndex, vector.length - 1);
         }
+
         int tmp=currentIndex;
-        while ((vector[tmp] > vector[(int) tmp/2])&& tmp>1) {
-            swap(tmp, tmp / 2);
-            tmp = tmp / 2;
+        while ((vector[tmp] > vector[tmp/2])&& tmp>1) {
+            swap(tmp, tmp/2);
+            tmp = tmp/2;
+            pauseAnimation();
+        }
+
+        drawAll();
+    }
+
+    private void maxHeapRestore(int i, int n) {
+        int max = i;
+
+        if (((2 * i) <= n) && (vector[2 * i] > vector[max]))
+            max = 2 * i;
+
+        if (((2 * i + 1) <= n) && (vector[2 * i + 1] > vector[max]))
+            max = 2 * i + 1;
+
+        if (i != max) {
+            swap(i,max);
+            pauseAnimation();
+            maxHeapRestore(max, n);
         }
     }
 
+    //Cycles through the array and creates the HeapTree with the value in the array
+    private void heapBuild(int n) {
 
-    public void maxHeapRestore(int i, int n) {
-        int max = i;
-        if (((2 * i) <= currentIndex) && (vector[2 * i] > vector[max]))
-            max = 2 * i;
-        if (((2 * i + 1) <= currentIndex) && (vector[2 * i + 1] > vector[max]))
-            max = 2 * i + 1;
-        if (i != max) {
-            swap(i,max);
-            maxHeapRestore(max, currentIndex);
+        for (int i = (n / 2); i >= 1; i--) {
+            maxHeapRestore(i, n);
+            pauseAnimation();
         }
+
+    }
+
+    //HeapSort algorithm, uses the HeapTree to sort the array
+    private void heapSort(int n) {
+
+        heapBuild(n);
+
+        for (int i =  currentIndex; i >= 2; i--) {
+            swap(1,i);
+            pauseAnimation();
+            maxHeapRestore(1, i-1 );
+        }
+
+        drawAll();
+    }
+
+    //Pause th execution of the algorithm to give the user a sense of animation
+    private void pauseAnimation() {
+
+        long currentTime = System.currentTimeMillis();
+        long toWait = currentTime + 500;
+        while(System.currentTimeMillis() < toWait) {
+            drawAll();
+        }
+
     }
 }

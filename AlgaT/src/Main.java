@@ -1,6 +1,7 @@
 /* AlgaT Projects made by Enea Guidi, Marco Tomasone and Luca Genova */
 
 /* IMPORT */
+
 import Classes.AlertBox;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class Main extends Application {

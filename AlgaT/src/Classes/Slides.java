@@ -1,5 +1,6 @@
 package Classes;
 
+/*  IMPORTS */
 import javafx.scene.image.Image;
 
 public class Slides {

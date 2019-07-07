@@ -1,5 +1,6 @@
 package Classes;
 
+/* IMPORTS */
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,40 +10,53 @@ import javafx.stage.Stage;
 
 public class TestDispatcherController {
 
+    /* METHODS */
     public void heapTreeSelected(ActionEvent event) {
-        try{
+
+        try {
+
             Parent nextLayout = FXMLLoader.load(getClass().getResource("../UI/Test1.fxml"));
             Scene toSetUp = new Scene(nextLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);
             window.show();
+
         } catch (Exception e) {
             new AlertBox("Error loading the test");
         }
+
     }
 
     public void heapSortSelected(ActionEvent event) {
-        try{
+
+        try {
+
             Parent nextLayout = FXMLLoader.load(getClass().getResource("../UI/Test6.fxml"));
             Scene toSetUp = new Scene(nextLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);
             window.show();
+
         } catch (Exception e) {
             new AlertBox("Error loading the test");
         }
+
     }
 
     public void homeSelected(ActionEvent event) {
-        try{
+
+        try {
+
             Parent nextLayout = FXMLLoader.load(getClass().getResource("../UI/Welcome.fxml"));
             Scene toSetUp = new Scene(nextLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);
             window.show();
+
         } catch (Exception e) {
             new AlertBox("Error loading the test");
         }
+
     }
 
     public void comingSoonSelected(ActionEvent event) {
