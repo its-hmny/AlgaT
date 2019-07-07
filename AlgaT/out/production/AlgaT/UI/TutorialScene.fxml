@@ -5,7 +5,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
 <AnchorPane id="tutorialLabel" prefHeight="500.0" prefWidth="700.0" stylesheets="@AppStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Classes.TutorialSceneController">
    <children>
       <Button layoutX="100.0" layoutY="400.0" mnemonicParsing="false" onAction="#previousSlide" prefHeight="40.0" prefWidth="90.0" stylesheets="@AppStyle.css" text="Back" textFill="#068fff">

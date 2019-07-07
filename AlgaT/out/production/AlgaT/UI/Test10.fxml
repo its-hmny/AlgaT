@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="500.0" maxWidth="700.0" prefHeight="500.0" prefWidth="700.0" stylesheets="@AppStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Classes.Test10Controller">
+   <children>
+      <Button layoutX="96.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveBack" prefHeight="39.0" prefWidth="106.0" text="Previous" />
+      <Button layoutX="497.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveForward" prefHeight="39.0" prefWidth="106.0" text="Next" />
+      <ProgressBar layoutX="96.0" layoutY="39.0" prefHeight="18.0" prefWidth="507.0" progress="1.0" />
+      <Label fx:id="errorMessage" layoutX="437.0" layoutY="288.0" prefHeight="18.0" prefWidth="146.0" text="Label" textFill="#fc1010" />
+      <ImageView fitHeight="208.0" fitWidth="427.0" layoutX="136.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/HeapSort2.PNG" />
+         </image>
+      </ImageView>
+      <TextField fx:id="text" layoutX="176.0" layoutY="128.0" prefHeight="26.0" prefWidth="173.0" />
+      <Label layoutX="130.0" layoutY="297.0" prefHeight="63.0" prefWidth="241.0" text="Completare l'immagine.">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+        </children>
+        </AnchorPane>
