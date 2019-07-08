@@ -9,7 +9,7 @@
    <children>
       <Button layoutX="96.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveBack" prefHeight="39.0" prefWidth="106.0" text="Previous" />
       <Button layoutX="497.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveForward" prefHeight="39.0" prefWidth="106.0" text="Next" />
-      <ProgressBar layoutX="96.0" layoutY="32.0" prefHeight="18.0" prefWidth="507.0" progress="0.9" />
+      <ProgressBar layoutX="96.0" layoutY="32.0" prefHeight="18.0" prefWidth="507.0" progress="0.7" />
 
        <Label fx:id="errorMessage" layoutX="121.0" layoutY="258.0" prefHeight="27.0" prefWidth="320.0" text="Label" textFill="#fc1010" />
       <ImageView fitHeight="224.0" fitWidth="468.0" layoutX="116.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
@@ -20,7 +20,7 @@
       <TextField fx:id="text" layoutX="202.0" layoutY="168.0" prefHeight="30.0" prefWidth="194.0" />
       <Label layoutX="139.0" layoutY="302.0" prefHeight="62.0" prefWidth="283.0" text="Completare l'immagine.">
          <font>
-            <Font size="19.0" />
+            <Font size="18.0" />
          </font>
       </Label>
    </children>

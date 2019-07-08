@@ -1,6 +1,7 @@
 package Classes;
 
 /*  IMPORTS */
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,19 +22,25 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SimulatorController implements Initializable {
 
     /*  FIELDS */
-    @FXML private AnchorPane window;
-    @FXML private TextField input;
+    @FXML
+    private AnchorPane window;
+    @FXML
+    private TextField input;
     private Pane treeView;
     private HBox arrayView;
     private final Integer NIL = -123456;
-    private Integer[] vector = {NIL, 1, 5, 6, NIL, NIL, NIL, NIL};
+    private Integer[] vector = {NIL, 6, 5, 1, NIL, NIL, NIL, NIL};
     private int currentIndex = 3;
+    private int value=1, j=currentIndex;
+    private int whatToDO;
 
     /*  METHODS */
     @Override
@@ -47,7 +54,7 @@ public class SimulatorController implements Initializable {
         window.getChildren().remove(arrayView);
         arrayView = new HBox(10);
         drawArray();
-        arrayView.relocate(100,325);
+        arrayView.relocate(100, 325);
         window.getChildren().add(arrayView);
 
         //Draw the HeapTree
@@ -55,22 +62,22 @@ public class SimulatorController implements Initializable {
         treeView = new Pane();
         treeView.minHeight(350);
         treeView.minWidth(650);
-        drawTree(1, 0,0, 325, 50, 150);
-        window.relocate(25,15);
+        drawTree(1, 0, 0, 325, 50, 150);
+        window.relocate(25, 15);
         window.getChildren().add(treeView);
     }
 
     //Cycles through the array and make the array graphics
     private void drawArray() {
 
-        for(int i = 1; i < vector.length; i++) {
+        for (int i = 1; i < vector.length; i++) {
 
             Text tmp1 = new Text();
             tmp1.setFont(Font.font("Verdana", FontWeight.BOLD, 15));
             tmp1.setFill(Color.WHITE);
-            Rectangle toAssign = new Rectangle(60,60);
+            Rectangle toAssign = new Rectangle(60, 60);
             toAssign.setId("my-rectangle");
-            if(vector[i] == NIL) tmp1.setText("/");
+            if (vector[i] == NIL) tmp1.setText("/");
             else tmp1.setText(vector[i].toString());
             arrayView.getChildren().add(i - 1, new StackPane(toAssign, tmp1));
 
@@ -144,7 +151,7 @@ public class SimulatorController implements Initializable {
 
     public void insertPressed(ActionEvent e) {
 
-        if(currentIndex < vector.length - 1) {
+        if (currentIndex < vector.length - 1) {
 
             String userInput = input.getCharacters().toString();
             Integer toAdd = Integer.valueOf(userInput);
@@ -155,7 +162,7 @@ public class SimulatorController implements Initializable {
     }
 
     public void removePressed(ActionEvent e) {
-        if(currentIndex > 1)
+        if (currentIndex > 1)
             deleteMax();
         else
             new AlertBox("The vector must contains at least one element");
@@ -165,15 +172,22 @@ public class SimulatorController implements Initializable {
         heapSort(currentIndex);
     }
 
+    public void stepPressed(ActionEvent e){
+        if(whatToDO==1)
+            value = step(value,j);
+        else
+            j=step(value,j);
+    }
+
     //Deletes the node with the higher value, in this case the root of the tree
     private void deleteMax() {
 
         if (currentIndex > 1) {
 
             swap(1, currentIndex);
-            vector[currentIndex]=NIL;
+            vector[currentIndex] = NIL;
             currentIndex--;
-            pauseAnimation();
+            j=currentIndex;
             maxHeapRestore(1, currentIndex);
 
         }
@@ -195,25 +209,25 @@ public class SimulatorController implements Initializable {
 
         if (currentIndex == 0) {
             currentIndex++;
+            j++;
             vector[currentIndex] = n;
         }
 
         if (currentIndex < vector.length) {
             currentIndex++;
+            j=currentIndex;
             vector[currentIndex] = n;
         }
 
-        int tmp=currentIndex;
-        while ((vector[tmp] > vector[tmp/2])&& tmp>1) {
-            swap(tmp, tmp/2);
-            tmp = tmp/2;
-            pauseAnimation();
-        }
-
         drawAll();
+
+        value=currentIndex;
+        whatToDO=1;
+
     }
 
     private void maxHeapRestore(int i, int n) {
+        whatToDO=2;
         int max = i;
 
         if (((2 * i) <= n) && (vector[2 * i] > vector[max]))
@@ -223,44 +237,58 @@ public class SimulatorController implements Initializable {
             max = 2 * i + 1;
 
         if (i != max) {
-            swap(i,max);
-            pauseAnimation();
+            swap(i, max);
             maxHeapRestore(max, n);
         }
+
     }
 
     //Cycles through the array and creates the HeapTree with the value in the array
     private void heapBuild(int n) {
-
+        whatToDO=2;
         for (int i = (n / 2); i >= 1; i--) {
             maxHeapRestore(i, n);
-            pauseAnimation();
         }
 
     }
 
     //HeapSort algorithm, uses the HeapTree to sort the array
     private void heapSort(int n) {
-
+        whatToDO=2;
         heapBuild(n);
 
-        for (int i =  currentIndex; i >= 2; i--) {
-            swap(1,i);
-            pauseAnimation();
-            maxHeapRestore(1, i-1 );
-        }
-
-        drawAll();
     }
 
-    //Pause th execution of the algorithm to give the user a sense of animation
-    private void pauseAnimation() {
+    public int step(int tmp, int y){
 
-        long currentTime = System.currentTimeMillis();
-        long toWait = currentTime + 500;
-        while(System.currentTimeMillis() < toWait) {
-            drawAll();
+        if(whatToDO==1) {
+
+            if ((vector[tmp] > vector[tmp / 2]) && tmp > 1) {
+                swap(tmp, tmp / 2);
+                tmp = tmp / 2;
+                drawAll();
+                return tmp;
+            }
         }
+        else if(whatToDO==2)
 
+            if(j >= 2) {
+                swap(1, j);
+                maxHeapRestore(1, j - 1);
+                drawAll();
+                j--;
+                return j;
+            }
+            drawAll();
+        return tmp;
+    }
+    public void allStepPressed(ActionEvent e){
+        if(whatToDO==1)
+            while((vector[value] > vector[value / 2]) && value > 1)
+                    value = step(value,j);
+        else
+            while(j>=2)
+                j=step(value,j);
     }
 }
+

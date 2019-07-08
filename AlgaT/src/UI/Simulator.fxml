@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+
 <AnchorPane fx:id="window" prefHeight="500.0" prefWidth="700.0" stylesheets="@AppStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Classes.SimulatorController">
     <children>
-        <Button layoutX="25.0" layoutY="424.0" mnemonicParsing="false" onAction="#moveBack" prefHeight="40.0" prefWidth="90.0" text="Home" />
-        <Button layoutX="165.0" layoutY="424.0" mnemonicParsing="false" onAction="#HeapSortPressed" prefHeight="40.0" prefWidth="90.0" text="HeapSort" />
-        <Button layoutX="305.0" layoutY="424.0" mnemonicParsing="false" onAction="#removePressed" prefHeight="40.0" prefWidth="90.0" text="Remove" />
-        <Button layoutX="445.0" layoutY="424.0" mnemonicParsing="false" onAction="#insertPressed" prefHeight="40.0" prefWidth="90.0" text="Insert" />
-        <TextField fx:id="input" layoutX="585.0" layoutY="424.0" prefHeight="40.0" prefWidth="90.0">
-         <font>
-            <Font name="Verdana Bold" size="15.0" />
-         </font>
-      </TextField>
+      <Button layoutX="596.0" layoutY="94.0" mnemonicParsing="false" onAction="#allStepPressed" prefHeight="40.0" prefWidth="90.0" text="Skip Steps" />
+        <Button layoutX="24.0" layoutY="431.0" mnemonicParsing="false" onAction="#HeapSortPressed" prefHeight="40.0" prefWidth="90.0" text="HeapSort" />
+        <Button layoutX="164.0" layoutY="431.0" mnemonicParsing="false" onAction="#removePressed" prefHeight="40.0" prefWidth="90.0" text="Remove" />
+        <Button layoutX="304.0" layoutY="431.0" mnemonicParsing="false" onAction="#insertPressed" prefHeight="40.0" prefWidth="90.0" text="Insert" />
+        <TextField fx:id="input" layoutX="444.0" layoutY="431.0" prefHeight="40.0" prefWidth="90.0">
+            <font>
+                <Font name="Verdana Bold" size="15.0" />
+            </font>
+        </TextField>
+        <Button layoutX="584.0" layoutY="431.0" mnemonicParsing="false" onAction="#stepPressed" prefHeight="40.0" prefWidth="90.0" text="Step" />
+        <Button layoutX="596.0" layoutY="35.0" mnemonicParsing="false" onAction="#moveBack" prefHeight="40.0" prefWidth="90.0" text="Home" />
     </children>
 </AnchorPane>

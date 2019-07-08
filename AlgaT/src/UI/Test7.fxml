@@ -12,14 +12,14 @@
       <Label fx:id="errorMessage" layoutX="365.0" layoutY="252.0" prefHeight="27.0" prefWidth="275.0" text="Label" textFill="#fc1010" />
       <Button layoutX="96.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveBack" prefHeight="39.0" prefWidth="106.0" text="Previous" />
       <Button layoutX="497.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveForward" prefHeight="39.0" prefWidth="106.0" text="Next" />
-      <ProgressBar layoutX="96.0" layoutY="32.0" prefHeight="18.0" prefWidth="507.0" progress="0.7" />
+      <ProgressBar layoutX="96.0" layoutY="32.0" prefHeight="18.0" prefWidth="507.0" progress="0.3" />
       <RadioButton fx:id="FALSE1" layoutX="88.0" layoutY="181.0" mnemonicParsing="false" text="O(log n)" />
       <RadioButton fx:id="FALSE2" layoutX="88.0" layoutY="324.0" mnemonicParsing="false" text="O(n^2)" />
       <RadioButton fx:id="TRUE" layoutX="88.0" layoutY="280.0" mnemonicParsing="false" text="O(nlog n)" />
       <RadioButton fx:id="FALSE3" layoutX="88.0" layoutY="232.0" mnemonicParsing="false" text="O(n)" />
       <Label layoutX="121.0" layoutY="85.0" prefHeight="70.0" prefWidth="488.0" text="Qual è la complessità della procedura HeapSort?">
          <font>
-            <Font size="19.0" />
+            <Font size="18.0" />
          </font>
       </Label>
    </children>

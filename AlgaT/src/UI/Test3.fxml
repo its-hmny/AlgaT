@@ -23,7 +23,7 @@
         <Button layoutX="497.0" layoutY="403.0"  mnemonicParsing="false" prefHeight="39.0" prefWidth="106.0" onAction="#moveForward" text="Next" />
         <Label layoutX="343.0" layoutY="100.0" prefHeight="76.0" prefWidth="307.0" text="Scrivere i nuovi nodi dell'albero secondo le proprietà del min-heap, dopo l'aggiunta del nodo 4." wrapText="true">
             <font>
-                <Font size="15.0" />
+                <Font size="18.0" />
             </font>
         </Label>
 

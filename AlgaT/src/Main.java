@@ -1,7 +1,6 @@
 /* AlgaT Projects made by Enea Guidi, Marco Tomasone and Luca Genova */
 
 /* IMPORT */
-
 import Classes.AlertBox;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -25,8 +24,6 @@ public class Main extends Application {
         } catch (Exception io)  {
             new AlertBox("I/O Exceptions check that the directory is correct");
             io.printStackTrace();
-        } finally {
-            System.out.println("Everything went fine, see you next time lucky bastard");
         }
     }
 

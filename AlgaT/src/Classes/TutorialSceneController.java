@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.net.URL;
 import java.util.LinkedList;
@@ -28,6 +27,7 @@ public class TutorialSceneController implements Initializable {
     private LinkedList<Slides> SlideList;
     @FXML private Label tutorialLabel;
     @FXML private ImageView tutorialImage;
+    @FXML private Label lessonLabel;
 
     /*  METHODS */
     @Override
@@ -39,7 +39,8 @@ public class TutorialSceneController implements Initializable {
         tutorialImage.setSmooth(true);
 
         try {
-            setupList(new File(getClass().getResource("../TextFile/TutorialExplanation.txt").getFile()));
+            setupList(new File(getClass().getResource(".." +
+                    "/TextFile/TutorialExplanation.txt").getFile()));
         } catch (Exception e) {
             new AlertBox("There's a bug scanning TutorialExplanation");
             e.printStackTrace();
@@ -48,6 +49,7 @@ public class TutorialSceneController implements Initializable {
         tutorialLabel.setFont(new Font("Verdana", 15));
         tutorialLabel.setText(SlideList.get(currentIndex).getText());
         tutorialImage.setImage(SlideList.get(currentIndex).getPicture());
+        lessonLabel.setText(SlideList.get(currentIndex).returnLessonType());
 
     }
 
@@ -83,46 +85,46 @@ public class TutorialSceneController implements Initializable {
 
         if (pos == 0) {
             Image image = new Image(getClass().getResourceAsStream("../Images/firstlesson.jpg"));
-            SlideList.add(pos, new Slides(description, image));
+            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
 
         } else if (pos == 2) {
             Image image = new Image(getClass().getResourceAsStream("../Images/properties.jpg"));
-            SlideList.add(pos, new Slides(description, image));
+            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
 
         } else if (pos == 3) {
             Image image = new Image(getClass().getResourceAsStream("../Images/Es5.png"));
-            SlideList.add(pos, new Slides(description, image));
+            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
 
         } else if (pos == 6) {
             Image image = new Image(getClass().getResourceAsStream("../Images/heapdelete1.gif"));
-            SlideList.add(pos, new Slides(description, image));
+            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
 
         } else if (pos == 7) {
             Image image = new Image(getClass().getResourceAsStream("../Images/heapinsertion.gif"));
-            SlideList.add(pos, new Slides(description, image));
+            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
 
         } else if (pos == 8) {
             Image image = new Image(getClass().getResourceAsStream("../Images/heaprestore.gif"));
-            SlideList.add(pos, new Slides(description, image));
+            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
 
         } else if (pos == 9) {
             Image image = new Image(getClass().getResourceAsStream("../Images/restore().PNG"));
-            SlideList.add(pos, new Slides(description, image));
+            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
 
         } else if (pos == 10) {
             Image image = new Image(getClass().getResourceAsStream("../Images/heapSort.png"));
-            SlideList.add(pos, new Slides(description, image));
+            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
 
         } else if (pos == 13) {
             Image image = new Image(getClass().getResourceAsStream("../Images/heapBuild.PNG"));
-            SlideList.add(pos, new Slides(description, image));
+            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
 
         } else if (pos == 14) {
             Image image = new Image(getClass().getResourceAsStream("../Images/heapsort-pseudocode.PNG"));
-            SlideList.add(pos, new Slides(description, image));
+            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
 
         } else
-            SlideList.add(pos, new Slides(description, null));
+            SlideList.add(pos, new Slides(description, null, getLessonNumber(pos)));
     }
 
     //Setup the next slide on "Forward" button clicked
@@ -146,16 +148,19 @@ public class TutorialSceneController implements Initializable {
                 if (nextSlide.containsImage()) {
 
                     tutorialLabel.setTranslateX(0);
+                    lessonLabel.setTranslateX(0);
                     tutorialLabel.setText(nextSlide.getText());
                     tutorialImage.setImage(nextSlide.getPicture());
+                    lessonLabel.setText(nextSlide.returnLessonType());
 
                 } else { //If the previous slide contained an Image then it move the label to the center
 
                     if (SlideList.get(currentIndex - 1).containsImage())
-                        tutorialLabel.setTranslateX(-100);
+                        tutorialLabel.setTranslateX(-100); lessonLabel.setTranslateX(-100);
 
                     tutorialLabel.setText(nextSlide.getText());
                     tutorialImage.setImage(nextSlide.getPicture());
+                    lessonLabel.setText(nextSlide.returnLessonType());
 
                 }
             }
@@ -187,16 +192,19 @@ public class TutorialSceneController implements Initializable {
                 if (previousSlide.containsImage()) {
 
                     tutorialLabel.setTranslateX(0);
+                    lessonLabel.setTranslateX(0);
                     tutorialLabel.setText(previousSlide.getText());
                     tutorialImage.setImage(previousSlide.getPicture());
+                    lessonLabel.setText(previousSlide.returnLessonType());
 
                 } else { //If the previous slide contained an Image then it move the label to the center
 
                     if (SlideList.get(currentIndex + 1).containsImage())
-                        tutorialLabel.setTranslateX(-100);
+                        tutorialLabel.setTranslateX(-100); lessonLabel.setTranslateX(-100);
 
                     tutorialLabel.setText(previousSlide.getText());
                     tutorialImage.setImage(previousSlide.getPicture());
+                    lessonLabel.setText(previousSlide.returnLessonType());
 
                 }
             }
@@ -205,5 +213,10 @@ public class TutorialSceneController implements Initializable {
             currentIndex++;
             new AlertBox("There was a problem moving back!");
         }
+    }
+
+    private String getLessonNumber(int pos) {
+        if(pos < 10)return("Lesson 1");
+        else return("Lesson 2");
     }
 }

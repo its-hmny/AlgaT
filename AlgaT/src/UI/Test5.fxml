@@ -12,7 +12,7 @@
         <Button layoutX="497.0" layoutY="403.0" minWidth="0.0" mnemonicParsing="false" prefHeight="39.0" onAction="#moveForward" prefWidth="106.0" text="Next" />
         <Label layoutX="36.0" layoutY="74.0" prefHeight="39.0" prefWidth="424.0" text="Dato il vettore seguente disegnare l'albero dopo l'HeapBuild()" wrapText="true">
             <font>
-                <Font size="15.0" />
+                <Font size="18.0" />
             </font>
         </Label>
 

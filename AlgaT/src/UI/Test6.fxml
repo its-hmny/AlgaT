@@ -9,14 +9,14 @@
 
       <Button layoutX="96.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveBack" prefHeight="39.0" prefWidth="106.0" text="Previous" />
       <Button layoutX="497.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveForward" prefHeight="39.0" prefWidth="106.0" text="Next" />
-      <ProgressBar layoutX="96.0" layoutY="32.0" prefHeight="18.0" prefWidth="507.0" progress="0.6" />
+      <ProgressBar layoutX="96.0" layoutY="32.0" prefHeight="18.0" prefWidth="507.0" progress="0.1" />
       <RadioButton fx:id="TRUE" layoutX="82.0" layoutY="232.0" mnemonicParsing="false" text="i/2, 2i,  2i+1" />
       <RadioButton fx:id="false1" layoutX="82.0" layoutY="272.0" mnemonicParsing="false" text="i/2, 2i+1,  2i+2" />
       <RadioButton fx:id="false2" layoutX="82.0" layoutY="310.0" mnemonicParsing="false" text="i/2+1, 2i,+1  2i+2" />
       <RadioButton fx:id="false3" layoutX="82.0" layoutY="203.0" mnemonicParsing="false" text="i/2+1, 2i, 2i+1" />
       <Label layoutX="82.0" layoutY="81.0" prefHeight="90.0" prefWidth="585.0" text="In un array con indice iniziale ad 1 quali sono gli indici che portano rispettivamente a padre, figlio sinistro e figlio destro?" wrapText="true">
          <font>
-            <Font name="Arial" size="16.0" />
+            <Font name="Arial" size="18.0" />
          </font>
       </Label>
    </children>
