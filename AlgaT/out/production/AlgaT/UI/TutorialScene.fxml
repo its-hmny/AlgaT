@@ -5,6 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+
 <AnchorPane id="tutorialLabel" prefHeight="500.0" prefWidth="700.0" stylesheets="@AppStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Classes.TutorialSceneController">
    <children>
       <Button layoutX="100.0" layoutY="400.0" mnemonicParsing="false" onAction="#previousSlide" prefHeight="40.0" prefWidth="90.0" stylesheets="@AppStyle.css" text="Back" textFill="#068fff">
@@ -18,9 +19,14 @@
          </font>
       </Button>
       <ImageView fx:id="tutorialImage" fitHeight="300.0" fitWidth="255.0" layoutX="45.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="tutorialLabel" alignment="CENTER" layoutX="300.0" layoutY="50.0" prefHeight="300.0" prefWidth="355.0" text="Label" textAlignment="JUSTIFY" wrapText="true">
+      <Label fx:id="tutorialLabel" alignment="CENTER" layoutX="300.0" layoutY="83.0" prefHeight="267.0" prefWidth="355.0" text="Label" textAlignment="JUSTIFY" wrapText="true">
          <font>
             <Font size="14.0" />
          </font></Label>
+      <Label fx:id="lessonNumber" alignment="CENTER" layoutX="300.0" layoutY="50.0" prefHeight="27.0" prefWidth="355.0" text="Label" underline="true" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
