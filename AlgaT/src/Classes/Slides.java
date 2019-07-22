@@ -3,27 +3,30 @@ package Classes;
 /*  IMPORTS */
 import javafx.scene.image.Image;
 
+
+//This class will be used for the tutorial part of the app, it contains String and Image that are used
+//to set up every "Slide" of the lessons without changing always .fxml file
 public class Slides {
 
     /*  FIELDS  */
     private Image picture;
     private String text;
-    private String lesson;
+    private String lessonNumber;
 
     /*  METHODS */
-    Slides(String stringToAssign, Image imageToAssign, String lessonNumber) {
+    Slides(String stringToAssign, Image imageToAssign, String lessonToAssign) {
         super();
         picture = imageToAssign;
         text = stringToAssign;
-        lesson = lessonNumber;
+        lessonNumber = lessonToAssign;
     }
 
     public boolean containsImage() {
         return(picture != null);
     }
 
-    public String returnLessonType() {
-        return(lesson);
+    public String getLessonNumber() {
+        return(lessonNumber);
     }
 
     public Image getPicture() {

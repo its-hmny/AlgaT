@@ -10,10 +10,10 @@
 
       <Button layoutX="96.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveBack" prefHeight="39.0" prefWidth="106.0" text="Previous" />
       <Button layoutX="497.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveForward" prefHeight="39.0" prefWidth="106.0" text="Next" />
-      <ProgressBar layoutX="96.0" layoutY="32.0" prefHeight="18.0" prefWidth="507.0" progress="0.5" />
+      <ProgressBar layoutX="96.0" layoutY="32.0" prefHeight="18.0" prefWidth="507.0" progress="0.8" />
       <Label layoutX="60.0" layoutY="75.0" prefHeight="88.0" prefWidth="592.0" text="Nella procedura HeapSort l'indice del ciclo for varia tra:" textAlignment="CENTER">
          <font>
-            <Font size="18.0" />
+            <Font size="17.0" />
          </font>
       </Label>
       <RadioButton fx:id="TRUE" layoutX="61.0" layoutY="209.0" mnemonicParsing="false" text="Tra n e 2" />

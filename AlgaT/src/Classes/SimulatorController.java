@@ -1,7 +1,6 @@
 package Classes;
 
 /*  IMPORTS */
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,24 +21,23 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 public class SimulatorController implements Initializable {
 
     /*  FIELDS */
-    @FXML
-    private AnchorPane window;
-    @FXML
-    private TextField input;
+    @FXML private AnchorPane window;
+    @FXML private TextField input;
     private Pane treeView;
     private HBox arrayView;
     private final Integer NIL = -123456;
     private Integer[] vector = {NIL, 6, 5, 1, NIL, NIL, NIL, NIL};
     private int currentIndex = 3;
-    private int value=1, j=currentIndex;
+    //Contains the values on which the algorithm should be executed
+    private int value = 1, y = currentIndex;
+    //Indicates which algorithm the user is executing
     private int whatToDO;
 
     /*  METHODS */
@@ -135,7 +133,7 @@ public class SimulatorController implements Initializable {
 
         try {
 
-            Parent prevLayout = FXMLLoader.load(getClass().getResource("../UI/Welcome.fxml"));
+            Parent prevLayout = FXMLLoader.load(getClass().getResource("/UI/Welcome.fxml"));
             Scene toSetUp = new Scene(prevLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);
@@ -162,6 +160,7 @@ public class SimulatorController implements Initializable {
     }
 
     public void removePressed(ActionEvent e) {
+        whatToDO = 3;
         if (currentIndex > 1)
             deleteMax();
         else
@@ -172,11 +171,12 @@ public class SimulatorController implements Initializable {
         heapSort(currentIndex);
     }
 
-    public void stepPressed(ActionEvent e){
+    //Depending on which algorithm has to execute, makes a step in the execution
+    public void stepPressed(ActionEvent e) {
         if(whatToDO==1)
-            value = step(value,j);
+            value = step(value, y);
         else
-            j=step(value,j);
+            y =step(value, y);
     }
 
     //Deletes the node with the higher value, in this case the root of the tree
@@ -187,7 +187,7 @@ public class SimulatorController implements Initializable {
             swap(1, currentIndex);
             vector[currentIndex] = NIL;
             currentIndex--;
-            j=currentIndex;
+            y =currentIndex;
             maxHeapRestore(1, currentIndex);
 
         }
@@ -209,18 +209,17 @@ public class SimulatorController implements Initializable {
 
         if (currentIndex == 0) {
             currentIndex++;
-            j++;
+            y++;
             vector[currentIndex] = n;
         }
 
         if (currentIndex < vector.length) {
             currentIndex++;
-            j=currentIndex;
+            y =currentIndex;
             vector[currentIndex] = n;
         }
 
         drawAll();
-
         value=currentIndex;
         whatToDO=1;
 
@@ -259,8 +258,9 @@ public class SimulatorController implements Initializable {
 
     }
 
-    public int step(int tmp, int y){
-
+    // Makes a step in the algorithm when step button has been pressed
+    public int step(int tmp, int y) {
+        //If insert has been pressed
         if(whatToDO==1) {
 
             if ((vector[tmp] > vector[tmp / 2]) && tmp > 1) {
@@ -270,25 +270,28 @@ public class SimulatorController implements Initializable {
                 return tmp;
             }
         }
+        //If heapsort has been pressed
         else if(whatToDO==2)
 
-            if(j >= 2) {
-                swap(1, j);
-                maxHeapRestore(1, j - 1);
+            if(y >= 2) {
+                swap(1, y);
+                maxHeapRestore(1, y - 1);
                 drawAll();
-                j--;
-                return j;
+                y--;
+                return y;
             }
             drawAll();
         return tmp;
     }
+
+    //End the algorithm when all steps has been pressed
     public void allStepPressed(ActionEvent e){
         if(whatToDO==1)
             while((vector[value] > vector[value / 2]) && value > 1)
-                    value = step(value,j);
+                    value = step(value, y);
         else
-            while(j>=2)
-                j=step(value,j);
+            while(y >= 2)
+                y = step(value, y);
     }
 }
 

@@ -37,7 +37,7 @@ public class Test2Controller implements Initializable {
         if(checkAnswer()) {
             try{
 
-                Parent nextLayout = FXMLLoader.load(getClass().getResource("../UI/Test3.fxml"));
+                Parent nextLayout = FXMLLoader.load(getClass().getResource("/UI/Test3.fxml"));
                 Scene toSetUp = new Scene(nextLayout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);
@@ -60,7 +60,7 @@ public class Test2Controller implements Initializable {
 
         try {
 
-            Parent prevLayout = FXMLLoader.load(getClass().getResource("../UI/Test1.fxml"));
+            Parent prevLayout = FXMLLoader.load(getClass().getResource("/UI/Test1.fxml"));
             Scene toSetUp = new Scene(prevLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);

@@ -35,7 +35,7 @@ public class Test1Controller implements Initializable {
         wrongSolution.setText("");
     }
 
-    //This method setup all five the ChoiceBox
+    //Sets up all five the ChoiceBox
     private void setupChoiceBoxes() {
         Integer toChoose[] = {1, 3, 5, 6, 8, 9};
         for (Integer i : toChoose) {
@@ -48,7 +48,7 @@ public class Test1Controller implements Initializable {
         }
     }
 
-    //This method checks if the answer is correct
+    //Checks if the answer is correct
     private boolean checkAnswer() {
         return(
                 (box1.getValue() == 1) &&
@@ -60,12 +60,12 @@ public class Test1Controller implements Initializable {
         );
     }
 
-    //Load the welcome screen
+    //Load the Welcome.fxml screen
     public void moveBack(ActionEvent event) {
 
         try {
 
-            Parent prevLayout = FXMLLoader.load(getClass().getResource("../UI/TestDispatcher.fxml"));
+            Parent prevLayout = FXMLLoader.load(getClass().getResource("/UI/TestDispatcher.fxml"));
             Scene toSetUp = new Scene(prevLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);
@@ -84,7 +84,7 @@ public class Test1Controller implements Initializable {
         if(checkAnswer()) {
             try {
 
-                Parent nextLayout = FXMLLoader.load(getClass().getResource("../UI/Test2.fxml"));
+                Parent nextLayout = FXMLLoader.load(getClass().getResource("/UI/Test2.fxml"));
                 Scene toSetUp = new Scene(nextLayout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);

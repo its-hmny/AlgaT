@@ -13,11 +13,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import java.io.File;
+
+import java.io.*;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+
 
 public class TutorialSceneController implements Initializable {
 
@@ -27,7 +30,7 @@ public class TutorialSceneController implements Initializable {
     private LinkedList<Slides> SlideList;
     @FXML private Label tutorialLabel;
     @FXML private ImageView tutorialImage;
-    @FXML private Label lessonLabel;
+    @FXML private Label lessonNumber;
 
     /*  METHODS */
     @Override
@@ -35,12 +38,10 @@ public class TutorialSceneController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         SlideList = new LinkedList<Slides>();
         currentIndex = 0;
-        tutorialImage.setPreserveRatio(true);
-        tutorialImage.setSmooth(true);
 
         try {
-            setupList(new File(getClass().getResource(".." +
-                    "/TextFile/TutorialExplanation.txt").getFile()));
+            setupList();
+            //setupList(new File(getClass().getResource("/TextFile/TutorialExplanation.txt").getFile()));
         } catch (Exception e) {
             new AlertBox("There's a bug scanning TutorialExplanation");
             e.printStackTrace();
@@ -49,34 +50,45 @@ public class TutorialSceneController implements Initializable {
         tutorialLabel.setFont(new Font("Verdana", 15));
         tutorialLabel.setText(SlideList.get(currentIndex).getText());
         tutorialImage.setImage(SlideList.get(currentIndex).getPicture());
-        lessonLabel.setText(SlideList.get(currentIndex).returnLessonType());
+        lessonNumber.setText(SlideList.get(currentIndex).getLessonNumber());
 
     }
 
     //Setup/creates the list of Slides
-    private void setupList(File source) throws Exception {
-
+    private void setupList() throws Exception {
+        BufferedReader fileReader=null;
         Integer counter = 0;
-        Scanner scanFile = new Scanner(source);
         String paragraph = "";
+        String check = "";
+        try{
+        InputStream inputFile = getClass().getResourceAsStream("/TextFile/TutorialExplanation.txt");
+        fileReader = new BufferedReader(new InputStreamReader(inputFile, Charset.forName("UTF-8")));
 
-            while (scanFile.hasNextLine()) {
-                String line = scanFile.nextLine()
-                        ;
-                if(line.contentEquals("##")) {
+        while ((check = fileReader.readLine())!= null) {
+            String line = check;
 
-                    addToList(counter, paragraph);
-                    counter++;
-                    paragraph = "";
+            if (line.contentEquals("##")) {
 
-                } else {
-                    paragraph = paragraph.concat(line);
-                }
+                addToList(counter, paragraph);
+                counter++;
+                paragraph = "";
 
             }
+            else
+                paragraph = paragraph.concat(line);
+        }
 
-        maxIndex = counter;
-        scanFile.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        } finally {
+            try {
+                maxIndex = counter;
+                if (fileReader != null)
+                    fileReader.close();
+            }catch (IOException ex){
+                ex.printStackTrace();
+            }
+        }
 
     }
 
@@ -84,47 +96,47 @@ public class TutorialSceneController implements Initializable {
     private void addToList(Integer pos, String description) {
 
         if (pos == 0) {
-            Image image = new Image(getClass().getResourceAsStream("../Images/firstlesson.jpg"));
-            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
+            Image image = new Image(getClass().getResourceAsStream("/Images/firstlesson.jpg"));
+            SlideList.add(pos, new Slides(description, image, returnLessonNumber(pos)));
 
         } else if (pos == 2) {
-            Image image = new Image(getClass().getResourceAsStream("../Images/properties.jpg"));
-            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
+            Image image = new Image(getClass().getResourceAsStream("/Images/template.jpg"));
+            SlideList.add(pos, new Slides(description, image, returnLessonNumber(pos)));
 
         } else if (pos == 3) {
-            Image image = new Image(getClass().getResourceAsStream("../Images/Es5.png"));
-            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
+            Image image = new Image(getClass().getResourceAsStream("/Images/Es5.png"));
+            SlideList.add(pos, new Slides(description, image, returnLessonNumber(pos)));
 
         } else if (pos == 6) {
-            Image image = new Image(getClass().getResourceAsStream("../Images/heapdelete1.gif"));
-            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
+            Image image = new Image(getClass().getResourceAsStream("/Images/heapdelete1.gif"));
+            SlideList.add(pos, new Slides(description, image, returnLessonNumber(pos)));
 
         } else if (pos == 7) {
-            Image image = new Image(getClass().getResourceAsStream("../Images/heapinsertion.gif"));
-            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
+            Image image = new Image(getClass().getResourceAsStream("/Images/heapinsertion.gif"));
+            SlideList.add(pos, new Slides(description, image, returnLessonNumber(pos)));
 
         } else if (pos == 8) {
-            Image image = new Image(getClass().getResourceAsStream("../Images/heaprestore.gif"));
-            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
+            Image image = new Image(getClass().getResourceAsStream("/Images/heaprestore.gif"));
+            SlideList.add(pos, new Slides(description, image, returnLessonNumber(pos)));
 
         } else if (pos == 9) {
-            Image image = new Image(getClass().getResourceAsStream("../Images/restore().PNG"));
-            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
+            Image image = new Image(getClass().getResourceAsStream("/Images/restore().PNG"));
+            SlideList.add(pos, new Slides(description, image, returnLessonNumber(pos)));
 
         } else if (pos == 10) {
-            Image image = new Image(getClass().getResourceAsStream("../Images/heapSort.png"));
-            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
+            Image image = new Image(getClass().getResourceAsStream("/Images/htree.jpg"));
+            SlideList.add(pos, new Slides(description, image, returnLessonNumber(pos)));
 
         } else if (pos == 13) {
-            Image image = new Image(getClass().getResourceAsStream("../Images/heapBuild.PNG"));
-            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
+            Image image = new Image(getClass().getResourceAsStream("/Images/heapBuild.PNG"));
+            SlideList.add(pos, new Slides(description, image, returnLessonNumber(pos)));
 
         } else if (pos == 14) {
-            Image image = new Image(getClass().getResourceAsStream("../Images/heapsort-pseudocode.PNG"));
-            SlideList.add(pos, new Slides(description, image, getLessonNumber(pos)));
+            Image image = new Image(getClass().getResourceAsStream("/Images/heapsort-pseudocode.PNG"));
+            SlideList.add(pos, new Slides(description, image, returnLessonNumber(pos)));
 
         } else
-            SlideList.add(pos, new Slides(description, null, getLessonNumber(pos)));
+            SlideList.add(pos, new Slides(description, null, returnLessonNumber(pos)));
     }
 
     //Setup the next slide on "Forward" button clicked
@@ -135,7 +147,7 @@ public class TutorialSceneController implements Initializable {
             //Means the lessons is finished, so reload Welcome screen
             if(currentIndex >= maxIndex) {
 
-                Parent test1Layout = FXMLLoader.load(getClass().getResource("../UI/Finished.fxml"));
+                Parent test1Layout = FXMLLoader.load(getClass().getResource("/UI/Finished.fxml"));
                 Scene toSetUp = new Scene(test1Layout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);
@@ -147,20 +159,19 @@ public class TutorialSceneController implements Initializable {
                 //Reset the label to the default position (Not centered but on the right)
                 if (nextSlide.containsImage()) {
 
-                    tutorialLabel.setTranslateX(0);
-                    lessonLabel.setTranslateX(0);
+                    tutorialLabel.setTranslateX(0); lessonNumber.setTranslateX(0);
                     tutorialLabel.setText(nextSlide.getText());
                     tutorialImage.setImage(nextSlide.getPicture());
-                    lessonLabel.setText(nextSlide.returnLessonType());
+                    lessonNumber.setText(nextSlide.getLessonNumber());
 
                 } else { //If the previous slide contained an Image then it move the label to the center
 
                     if (SlideList.get(currentIndex - 1).containsImage())
-                        tutorialLabel.setTranslateX(-100); lessonLabel.setTranslateX(-100);
+                        tutorialLabel.setTranslateX(-100); lessonNumber.setTranslateX(-100);
 
                     tutorialLabel.setText(nextSlide.getText());
                     tutorialImage.setImage(nextSlide.getPicture());
-                    lessonLabel.setText(nextSlide.returnLessonType());
+                    lessonNumber.setText(nextSlide.getLessonNumber());
 
                 }
             }
@@ -179,7 +190,7 @@ public class TutorialSceneController implements Initializable {
             //Reload welcome screen
             if (currentIndex < 0) {
 
-                Parent welcomeScreenLayout = FXMLLoader.load(getClass().getResource("../UI/Welcome.fxml"));
+                Parent welcomeScreenLayout = FXMLLoader.load(getClass().getResource("/UI/Welcome.fxml"));
                 Scene toSetUp = new Scene(welcomeScreenLayout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);
@@ -191,20 +202,19 @@ public class TutorialSceneController implements Initializable {
                 //Reset the label to the default position (Not centered but on the right)
                 if (previousSlide.containsImage()) {
 
-                    tutorialLabel.setTranslateX(0);
-                    lessonLabel.setTranslateX(0);
+                    tutorialLabel.setTranslateX(0); lessonNumber.setTranslateX(0);
                     tutorialLabel.setText(previousSlide.getText());
                     tutorialImage.setImage(previousSlide.getPicture());
-                    lessonLabel.setText(previousSlide.returnLessonType());
+                    lessonNumber.setText(previousSlide.getLessonNumber());
 
                 } else { //If the previous slide contained an Image then it move the label to the center
 
                     if (SlideList.get(currentIndex + 1).containsImage())
-                        tutorialLabel.setTranslateX(-100); lessonLabel.setTranslateX(-100);
+                        tutorialLabel.setTranslateX(-100); lessonNumber.setTranslateX(-100);
 
                     tutorialLabel.setText(previousSlide.getText());
                     tutorialImage.setImage(previousSlide.getPicture());
-                    lessonLabel.setText(previousSlide.returnLessonType());
+                    lessonNumber.setText(previousSlide.getLessonNumber());
 
                 }
             }
@@ -215,8 +225,11 @@ public class TutorialSceneController implements Initializable {
         }
     }
 
-    private String getLessonNumber(int pos) {
-        if(pos < 10)return("Lesson 1");
-        else return("Lesson 2");
+    private String returnLessonNumber(int actualPos) {
+        if (actualPos < 10)
+            return("Lesson 1");
+        else if (actualPos < 20)
+            return("Lesson 2");
+        else return("Out of bound");
     }
 }

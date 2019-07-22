@@ -23,7 +23,7 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="lessonLabel" alignment="CENTER" layoutX="300.0" layoutY="50.0" prefHeight="27.0" prefWidth="355.0" text="Label" underline="true" wrapText="true">
+      <Label fx:id="lessonNumber" alignment="CENTER" layoutX="300.0" layoutY="50.0" prefHeight="27.0" prefWidth="355.0" text="Label" underline="true" wrapText="true">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

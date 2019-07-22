@@ -30,7 +30,7 @@ public class Test6Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         errorMessage.setText(" ");
 
-        ToggleGroup t=new ToggleGroup();
+        ToggleGroup t=new ToggleGroup(); //setto i gruppi radio altrimenti non sarebbero collegati
         false1.setToggleGroup(t);
         false2.setToggleGroup(t);
         false3.setToggleGroup(t);
@@ -42,7 +42,7 @@ public class Test6Controller implements Initializable {
         if(checkAnswer()) {
             try {
 
-                Parent nextLayout = FXMLLoader.load(getClass().getResource("../UI/Test7.fxml"));
+                Parent nextLayout = FXMLLoader.load(getClass().getResource("/UI/Test7.fxml"));
                 Scene toSetUp = new Scene(nextLayout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);
@@ -63,7 +63,7 @@ public class Test6Controller implements Initializable {
 
         try {
 
-            Parent prevLayout = FXMLLoader.load(getClass().getResource("../UI/Test5.fxml"));
+            Parent prevLayout = FXMLLoader.load(getClass().getResource("/UI/TestDispatcher.fxml"));
             Scene toSetUp = new Scene(prevLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);

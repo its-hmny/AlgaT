@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class Test3Controller implements Initializable {
 
-    /* FIELDS */
+    /* FIELDS DOVE IL PRIMO left/right SI RIFERISCE ALLA PARTE SINISTRA O DESTRA DELL'ALBERO DALLA RADICE*/
     @FXML private TextField root; //radice
     @FXML private TextField leftSon; //figlio sinistro (parte SINISTRA dalla radice)
     @FXML private TextField rightSon; //figlio destro (parte DESTRA dalla radice)
@@ -43,7 +43,7 @@ public class Test3Controller implements Initializable {
         if(checkAnswer()) {
             try{
 
-                Parent nextLayout = FXMLLoader.load(getClass().getResource("../UI/Test4.fxml"));
+                Parent nextLayout = FXMLLoader.load(getClass().getResource("/UI/Test4.fxml"));
                 Scene toSetUp = new Scene(nextLayout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);
@@ -67,7 +67,7 @@ public class Test3Controller implements Initializable {
 
         try {
 
-            Parent prevLayout = FXMLLoader.load(getClass().getResource("../UI/Test2.fxml"));
+            Parent prevLayout = FXMLLoader.load(getClass().getResource("/UI/Test2.fxml"));
             Scene toSetUp = new Scene(prevLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);

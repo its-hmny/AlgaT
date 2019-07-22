@@ -34,7 +34,7 @@ public class Test10Controller implements Initializable {
         if(checkAnswer()) {
             try {
 
-                Parent nextLayout = FXMLLoader.load(getClass().getResource("../UI/FinishTest.fxml"));
+                Parent nextLayout = FXMLLoader.load(getClass().getResource("/UI/FinishTest.fxml"));
                 Scene toSetUp = new Scene(nextLayout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);
@@ -57,7 +57,7 @@ public class Test10Controller implements Initializable {
 
         try {
 
-            Parent prevLayout = FXMLLoader.load(getClass().getResource("../UI/Test9.fxml"));
+            Parent prevLayout = FXMLLoader.load(getClass().getResource("/UI/Test9.fxml"));
             Scene toSetUp = new Scene(prevLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);
@@ -71,6 +71,7 @@ public class Test10Controller implements Initializable {
         }
     }
 
+    //Check all the possible correct inputs
     private boolean checkAnswer() {
         errorMessage.setText(" ");
         return(

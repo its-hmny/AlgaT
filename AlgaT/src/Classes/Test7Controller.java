@@ -30,7 +30,7 @@ public class Test7Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         errorMessage.setText(" ");
 
-        ToggleGroup t=new ToggleGroup();
+        ToggleGroup t=new ToggleGroup(); //setto i gruppi radio altrimenti non sarebbero collegati
         FALSE1.setToggleGroup(t);
         TRUE.setToggleGroup(t);
         FALSE2.setToggleGroup(t);
@@ -42,7 +42,7 @@ public class Test7Controller implements Initializable {
         if(checkAnswer()) {
             try {
 
-                Parent nextLayout = FXMLLoader.load(getClass().getResource("../UI/Test8.fxml"));
+                Parent nextLayout = FXMLLoader.load(getClass().getResource("/UI/Test8.fxml"));
                 Scene toSetUp = new Scene(nextLayout);
                 Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
                 window.setScene(toSetUp);
@@ -62,7 +62,7 @@ public class Test7Controller implements Initializable {
 
         try {
 
-            Parent prevLayout = FXMLLoader.load(getClass().getResource("../UI/Test6.fxml"));
+            Parent prevLayout = FXMLLoader.load(getClass().getResource("/UI/Test6.fxml"));
             Scene toSetUp = new Scene(prevLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);
@@ -76,7 +76,7 @@ public class Test7Controller implements Initializable {
         }
 
     }
-
+    //controllo che la risposta giusta sia selezionata o meno
     private boolean checkAnswer() {
         errorMessage.setText(" ");
         return(TRUE.isSelected());
