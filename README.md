@@ -14,6 +14,6 @@ Once the program started from the welcome screen you can choose between three di
 To start the application just compile the source code and enjoy, else you can directly run the.jar file on the JVM the AlgaT.jar can be found in AlgaT/productions/artifacts
 
 ## Others and credits
-Please report any problem or issue, fell free to contribute to this project as you prefer. If you like this project and want to see some other of my works visit my [GitHub page](github.com/horny-milf-near-you), check out also the other two member's page:
+Please report any problem or issue, fell free to contribute to this project as you prefer. If you like this project and want to see some other of my works visit my [GitHub page](https://github.com/Horny-Milf-Near-You), check out also the other two member's page:
   * [Marco Benito Tomasone](https://github.com/MarcoTomasone)
   * [Luca Genova](https://github.com/Lucajett99)
