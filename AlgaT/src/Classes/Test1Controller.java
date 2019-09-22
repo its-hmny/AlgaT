@@ -4,18 +4,16 @@ package Classes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Test1Controller implements Initializable {
+public class Test1Controller implements Test_Interface {
 
     /* FIELDS */
     @FXML private Label text;
@@ -31,7 +29,7 @@ public class Test1Controller implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setupChoiceBoxes();
-        text.setText("In base all'immagine data, determinare come è memorizzato l'albero minHeap nel vettore");
+        text.setText("Based on the shown picture, determine how the HeapTree has been memorized in the array");
         wrongSolution.setText("");
     }
 
@@ -49,7 +47,7 @@ public class Test1Controller implements Initializable {
     }
 
     //Checks if the answer is correct
-    private boolean checkAnswer() {
+    public boolean checkAnswer() {
         return(
                 (box1.getValue() == 1) &&
                 (box2.getValue() == 3) &&
@@ -65,7 +63,7 @@ public class Test1Controller implements Initializable {
 
         try {
 
-            Parent prevLayout = FXMLLoader.load(getClass().getResource("/UI/TestDispatcher.fxml"));
+            Parent prevLayout = FXMLLoader.load(getClass().getResource("/UI/Welcome.fxml"));
             Scene toSetUp = new Scene(prevLayout);
             Stage window = (Stage) (((Node) event.getSource()).getScene()).getWindow();
             window.setScene(toSetUp);

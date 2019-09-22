@@ -4,18 +4,16 @@ package Classes;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Test2Controller implements Initializable {
+public class Test2Controller implements Test_Interface {
 
     /* FIELDS */
     @FXML private TextField root;
@@ -75,7 +73,7 @@ public class Test2Controller implements Initializable {
     }
 
     //Check all the possible correct inputs
-    private boolean checkAnswer() {
+    public boolean checkAnswer() {
         errorMessage.setText(" ");
 
         return(

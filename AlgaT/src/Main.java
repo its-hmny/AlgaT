@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 
@@ -32,11 +31,10 @@ public class Main extends Application {
         currentWindow = primaryStage;
         Parent startScreen = FXMLLoader.load(getClass().getResource("UI/Welcome.fxml"));
         setupWelcomeScene(currentWindow, startScreen);
-        currentWindow.setOnCloseRequest(e->System.out.println("User closed the application"));
         currentWindow.show();
     }
 
-    public void setupWelcomeScene(Stage window, Parent startScreen) {
+    private void setupWelcomeScene(Stage window, Parent startScreen) {
         window.getIcons().add(new Image("Images/appLogo.png"));
         Scene welcomeScene = new Scene(startScreen);
         window.setTitle("AlgaT");
@@ -56,7 +54,7 @@ public class Main extends Application {
     }
 
     public void startTests(ActionEvent event) throws Exception {
-        Parent simulatorLayout = FXMLLoader.load(getClass().getResource("UI/TestDispatcher.fxml"));
+        Parent simulatorLayout = FXMLLoader.load(getClass().getResource("UI/Test1.fxml"));
         Scene simulatorScene = new Scene(simulatorLayout);
         currentWindow.setScene(simulatorScene);
     }

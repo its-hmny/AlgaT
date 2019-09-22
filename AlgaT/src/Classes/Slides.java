@@ -11,22 +11,16 @@ public class Slides {
     /*  FIELDS  */
     private Image picture;
     private String text;
-    private String lessonNumber;
 
     /*  METHODS */
-    Slides(String stringToAssign, Image imageToAssign, String lessonToAssign) {
+    Slides(String stringToAssign, Image imageToAssign) {
         super();
         picture = imageToAssign;
         text = stringToAssign;
-        lessonNumber = lessonToAssign;
     }
 
     public boolean containsImage() {
         return(picture != null);
-    }
-
-    public String getLessonNumber() {
-        return(lessonNumber);
     }
 
     public Image getPicture() {
@@ -35,5 +29,12 @@ public class Slides {
 
     public String getText() {
         return(text);
+    }
+
+    public double[] getWidth_Height() {
+        double[] imageSize = new double[2];
+        imageSize[0] = picture.getHeight();
+        imageSize[1] = picture.getWidth();
+        return(imageSize);
     }
 }

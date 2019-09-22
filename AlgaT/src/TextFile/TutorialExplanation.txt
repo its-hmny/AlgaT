@@ -1,12 +1,15 @@
 ﻿DATA STRUCTURE: HEAPTREE
+**/Images/firstlesson.jpg
 ##
 Un HeapTree è una struttura dati che riprende dagli alberi binari ma aggiunge alcune proprietà
  speciali, le proprietà di questo tipo di alberi sono:
 ##
+**/Images/template.jpg
 1) Se h è il livello massimo delle foglie, allora ci sono 2^n - 1 nodi di livello minore di h. \n
  2) Tutte le foglie di livello h sono addossate a sinistra. \n
  3) Ogni nodo diverso dalla radice contiene un elemento maggiore o uguale (minHeapTree) a quello contenuto nel padre.
 ##
+**/Images/Es5.png
 Quindi grazie a queste proprietà sappiamo che: Ciascun livello k (con 0 <= k < h) contiene tutti i 2^k nodi, ovvero
  tutti i livelli (tranne l'ultimo) sono "pieni", mentre i nodi a livello h sono tutti addossati a sinistra, questo fa
  si che l'albero sia sempre "quasi pieno".
@@ -26,21 +29,25 @@ L'operazione deleteMin() rimuove dall'albero l'elemento con valore minore, ma pe
  radice con i figli (che dovrebbero essere minori) fintanto che i figli di questo nodo, non rispettano le proprietà
  del minHeapTree. Questa procedura di ripristino dell proprietà si chiama minHeapRestore() e richiede O(logn).
 ##
+**/Images/heapdelete1.gif
 L'operazione insert() aggiunge una nuova foglia all'albero, in particolare questa foglia sarà sempre l'elemento più a sinistra
  di livello massimo. Ora questo nuovo nodo potrebbe violare le proprietà del minHeapTree quindi si fa una swap() con
  il padre della nuova foglia fintanto che le proprietà non torneranno a essere rispettate.
 ##
+**/Images/heapinsertion.gif
 La procedura minHeapRestore() ha il compito di ripristinare le proprietà dell'albero dopo una modifica. Si parte dall'assunto
  che i sottoalberi del nodo preso in considerazione rispettino già le proprietà e verifica se uno dei figli e minore del valore
  presente nel nodo preso in considerazione. In questo caso i nodi si scambiano e viene eseguita una chiamata ricorsiva sulle posizioni
  aggiornate. La chiamata ricorsiva termina quando tutte le proprietà sono rispettate e dunque non ci sono più nodi da
  sistemare.
 ##
+**/Images/heaprestore.gif
 Quindi sia deleteMin() che insert() provocano scambi di elementi lungo il percorso radice foglia, e richiedono O(logn) operazioni.
  In particolare insert richiede la chiamata di minHeapRestore() per ripristinare le proprietà del grafico.
 ##
 ALGORITHM: HEAPSORT
 ##
+**/Images/htree.jpg
 Questa struttura dati oltre a essere usata per la realizzazione di code con priorità risulta fondamentale per l'omonimo
  algoritmo di ordinamento HeapSort di complessità ottima O(nlogn).
  Prendiamo come esempio un vettore di elementi non ordinati che vogliamo ordinare, potremmo prendere tutti gli elementi 
