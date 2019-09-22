@@ -9,11 +9,11 @@
 <AnchorPane prefHeight="500.0" prefWidth="700.0" stylesheets="@AppStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Classes.Test2Controller">
    <children>
       <Button layoutX="96.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveBack" prefHeight="39.0" prefWidth="106.0" text="Previous" />
-      <Label layoutX="51.0" layoutY="86.0" prefHeight="171.0" prefWidth="320.0" text="Inserire nelle apposite caselle i valori che si troveranno nelle rispettive locazioni dopo la chiamata della procedura minHeapRestore()" wrapText="true">
+      <Label layoutX="51.0" layoutY="86.0" prefHeight="171.0" prefWidth="320.0" text="Add in the following blank spaces the values that will be in each node after the minHeapRestore() function call" wrapText="true">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <ProgressBar layoutX="96.0" layoutY="42.0" prefHeight="18.0" prefWidth="507.0" progress="0.3" />
+      <ProgressBar layoutX="96.0" layoutY="42.0" prefHeight="18.0" prefWidth="507.0" progress="0.34" />
       <Button layoutX="497.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveForward" prefHeight="39.0" prefWidth="106.0" text="Next" />
       <Label fx:id="errorMessage" layoutX="51.0" layoutY="257.0" prefHeight="27.0" prefWidth="320.0" text="Label" textFill="#fc1010" />
       <ImageView fitHeight="227.0" fitWidth="245.0" layoutX="392.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">

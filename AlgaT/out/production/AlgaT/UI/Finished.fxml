@@ -9,7 +9,7 @@
 <AnchorPane maxHeight="500.0" maxWidth="700.0" prefHeight="500.0" prefWidth="700.0" stylesheets="@AppStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Classes.Finished">
     <children>
         <Button layoutX="430.0" layoutY="294.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="39.0" prefWidth="106.0" text="Home" />
-        <Label layoutX="49.0" layoutY="104.0" prefHeight="124.0" prefWidth="602.0" text="CONGRATULATIONS YOU HAVE COMPLETED THE LESSONS!!!" textAlignment="CENTER" wrapText="true">
+        <Label layoutX="49.0" layoutY="104.0" prefHeight="124.0" prefWidth="602.0" text="CONGRATULATIONS YOU HAVE GOT TILL THE END!!" textAlignment="CENTER" wrapText="true">
             <font>
                 <Font size="30.0" />
             </font>

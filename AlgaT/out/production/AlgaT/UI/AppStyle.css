@@ -66,6 +66,23 @@
     -fx-font: bold;
 }
 
+.radio-button .radio{
+    -fx-background-insets: 0;
+    -fx-background-color: white;
+    -fx-border-color: #0e9ef7;
+}
+.radio-button .radio:hover{
+    -fx-border-color: #0e9ef7;
+    -fx-background-color: white;
+    -fx-border-radius: 50px;
+}
+
+.radio-button .radio:selected .radio{
+    -fx-border-color: #0e9ef7;
+    -fx-background-color: white;
+    -fx-border-radius: 50px;
+}
+
    .choice-box .context-menu { -fx-background-color: black; }
    .choice-box .menu-item:focused { -fx-background-color: #0e9ef7; }
    .choice-box .menu-item > .label { -fx-text-fill: white; }
