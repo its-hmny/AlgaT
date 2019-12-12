@@ -1,0 +1,80 @@
+﻿DATA STRUCTURE: HEAPTREE
+**/Images/firstlesson.jpg
+##
+Un HeapTree è una struttura dati che riprende dagli alberi binari ma aggiunge alcune proprietà
+ speciali, le proprietà di questo tipo di alberi sono:
+##
+**/Images/template.jpg
+1) Se h è il livello massimo delle foglie, allora ci sono 2^n - 1 nodi di livello minore di h. \n
+ 2) Tutte le foglie di livello h sono addossate a sinistra. \n
+ 3) Ogni nodo diverso dalla radice contiene un elemento maggiore o uguale (minHeapTree) a quello contenuto nel padre.
+##
+**/Images/Es5.png
+Quindi grazie a queste proprietà sappiamo che: Ciascun livello k (con 0 <= k < h) contiene tutti i 2^k nodi, ovvero
+ tutti i livelli (tranne l'ultimo) sono "pieni", mentre i nodi a livello h sono tutti addossati a sinistra, questo fa
+ si che l'albero sia sempre "quasi pieno".
+##
+E' possibile anche passare ad una visualizzazione a vettore, ponendo la radice nel primo posto del vettore, diciamo i,
+ allora i figli sinistro e destro saranno rispettivamente in (i*2) e (i*2 + 1). Al contrario prendendo un elemento a
+ caso nel vettore di indice i, allora il padre del nodo sarà in i/2.
+##
+Esistono due tipi di HeapTree: 1) minHeap dove la radice è il nodo di valore minore e i figli hanno valori maggiori o
+ uguali dei padri ricorsivamente, 2) maxHeap che sono l'esatto contrario di minHeap.
+ Questi alberi hanno delle loro particolari operazioni che cambiano in base a che tipo di albero abbiamo (min o max)
+ ma in ogni caso le operazioni sono speculari da un tipo all'altro. Ne vediamo di seguito alcune:
+##
+L'operazione deleteMin() rimuove dall'albero l'elemento con valore minore, ma per le proprietà del minHeapTree questo
+ nodo è proprio la radice, quindi si estrae quest'ultima e poi si ripristinano le proprieta dell' albero.
+ Per fare questo si prende il nodo più a destra sul livello h e lo si mette a radice, poi si scambia questa nuova 
+ radice con i figli (che dovrebbero essere minori) fintanto che i figli di questo nodo, non rispettano le proprietà
+ del minHeapTree. Questa procedura di ripristino dell proprietà si chiama minHeapRestore() e richiede O(logn).
+##
+**/Images/heapdelete1.gif
+L'operazione insert() aggiunge una nuova foglia all'albero, in particolare questa foglia sarà sempre l'elemento più a sinistra
+ di livello massimo. Ora questo nuovo nodo potrebbe violare le proprietà del minHeapTree quindi si fa una swap() con
+ il padre della nuova foglia fintanto che le proprietà non torneranno a essere rispettate.
+##
+**/Images/heapinsertion.gif
+La procedura minHeapRestore() ha il compito di ripristinare le proprietà dell'albero dopo una modifica. Si parte dall'assunto
+ che i sottoalberi del nodo preso in considerazione rispettino già le proprietà e verifica se uno dei figli e minore del valore
+ presente nel nodo preso in considerazione. In questo caso i nodi si scambiano e viene eseguita una chiamata ricorsiva sulle posizioni
+ aggiornate. La chiamata ricorsiva termina quando tutte le proprietà sono rispettate e dunque non ci sono più nodi da
+ sistemare.
+##
+**/Images/heaprestore.gif
+Quindi sia deleteMin() che insert() provocano scambi di elementi lungo il percorso radice foglia, e richiedono O(logn) operazioni.
+ In particolare insert richiede la chiamata di minHeapRestore() per ripristinare le proprietà del grafico.
+##
+ALGORITHM: HEAPSORT
+##
+**/Images/htree.jpg
+Questa struttura dati oltre a essere usata per la realizzazione di code con priorità risulta fondamentale per l'omonimo
+ algoritmo di ordinamento HeapSort di complessità ottima O(nlogn).
+ Prendiamo come esempio un vettore di elementi non ordinati che vogliamo ordinare, potremmo prendere tutti gli elementi 
+ e creare un HeapTree (min o max, è indifferente).
+##
+Usiamo dunque una procedura heapBuild() che partendo dall'elemento di indice n/2, questo perchè la funzione maxHeapRestore()
+ è strutturata in modo che consideri i sottoalberi del nodo chiamato come già rispettanti delle proprietà Heap. Noi sappiamo dunque che i nodi
+ tra n e n/2 sono tutte foglie ed essendo foglie maxHeapRestore chiamata sui loro indici sarebbe pressochè inutile.
+##
+ Tornando a HeapBuild si parte da n/2 (dove n è la capacità massima del vettore) e si scende fino all'indice uno.
+ A ogni iterazione però si chiama maxHeapRestore facendo si che alla fine di ogni ciclo il vettore esaminato finora sia a tutti gli effetti
+ compatibile con le proprietà Heap.
+##
+Ora cerchiamo di capire come funziona HeapSort() invece, sappiamo che la chiamata HeapBuild iniziale fa si che si lavori
+ con un HeapTree fin da subito, poi si scorre all'indietro l'array (partendo dal fondo) e ad ogni iterazione si scambiano i valori
+ contenuti nella radice e quell contenuti nel nodo corrente. Dopodichè si chiama maxHeapRestore(), sulla rimanente porzione di vettore 
+ ancora da esaminare. Valutando più attentamente si vede che la radice (ovvero il nodo con il valore più grande di tutti gli altri)
+ è sempre messa "in fondo" al vettore.
+##
+Poi la chiamata maxHeapRestore() sulla porzione di vettore che va da i - 1 a 1
+ fa si che quella sotto porzione di vettore sia riordinata secondo le proprietà Heap, questo creerà una nuova radice dell'albero
+ che guardacaso sarà nuovamente il valore maggiore di quell'albero, dunque di quella porzione di vettore e quindi questa nuova radice 
+ verrà messa nuovamente nell'ultimo posto disponibile per il vettore preso in considerazione in quel momento.
+##
+Il calcolo della complessità risulta abbastanza immediato: sappiamo che heapBuild() richiede O(n) ma viene eseguito solo una volta,
+ maxHeapRestore() invece costa O(logn) ma viene eseguito all'interno di un ciclo for circa O(n) volte. Dunque abbiamo che
+ il costo di HeeapSort è: O(n + nlogn) = O(nlogn), in quanto n contribuisce in maniera meno effettiva al costo dell' algoritmo 
+ viene semplicemente ignorato e al suo posto viene considerata la funzione di costo maggiore ovvero O(nlogn).
+##
+  

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane maxHeight="500.0" maxWidth="700.0" prefHeight="500.0" prefWidth="700.0" stylesheets="@AppStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Classes.Test3Controller">
+    <children>
+        <Button layoutX="96.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveBack" prefHeight="39.0" prefWidth="106.0" text="Previous" />
+        <Button layoutX="497.0" layoutY="403.0" mnemonicParsing="false" onAction="#moveForward" prefHeight="39.0" prefWidth="106.0" text="Next" />
+        <ProgressBar layoutX="96.0" layoutY="32.0" prefHeight="18.0" prefWidth="507.0" progress="0.51" />
+        <Label fx:id="errorMessage" layoutX="168.0" layoutY="335.0" prefHeight="27.0" prefWidth="320.0" text="Label" textFill="#fc1010" />
+        <Label layoutX="168.0" layoutY="97.0" text="Which of the following sentences is WRONG?">
+            <font>
+                <Font name="System Bold" size="14.0" />
+            </font>
+        </Label>
+        <RadioButton fx:id="true1" layoutX="173.0" layoutY="114.0" maxHeight="70.0" maxWidth="346.0" minHeight="39.0" minWidth="346.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="346.0" text="A BinaryTree is also an HeapTree if and only if every node has a value" wrapText="true" />
+        <RadioButton fx:id="true2" layoutX="173.0" layoutY="174.0" maxHeight="63.0" maxWidth="328.0" minHeight="39.0" minWidth="328.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="328.0" text="An HeapTree does not impose any sorting between the son of the same node" wrapText="true" />
+        <RadioButton fx:id="true3" layoutX="173.0" layoutY="275.0" mnemonicParsing="false" text="All the node at level h are grouped on the left" wrapText="true" />
+        <RadioButton fx:id="FALSE" layoutX="173.0" layoutY="243.0" mnemonicParsing="false" text="An HeapTree is a symmetrical and partial sorting" wrapText="true" />
+    </children>
+</AnchorPane>

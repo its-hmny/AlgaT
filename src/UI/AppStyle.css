@@ -1,0 +1,91 @@
+.button{
+    -fx-background-color: #0e9ef7;
+    -fx-background-radius: 50;
+    -fx-alignment: center;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.button:pressed, .button:default:hover:pressed {
+    -fx-background-color: lightblue;
+    -fx-text-fill: white;
+}
+
+.choice-box{
+    -fx-background-color: #0e9ef7;
+    -fx-background-radius: 50;
+    -fx-alignment: center;
+    -fx-tick-mark-visible: true;
+    -fx-text-fill: white;
+    -fx-mark-color: white;
+}
+
+.root{
+    -fx-background-color: white;
+}
+
+.anPane{
+    -fx-background-color: white;
+}
+
+.text-area{
+    -fx-background-color: white;
+    -fx-text-fill: #0e9ef7;
+    -fx-text-alignment: center;
+    -fx-border-color: #0e9ef7;
+}
+
+.progress-bar{
+    -fx-border-color: white;
+    -fx-fill: #0e9ef7;
+    -fx-box-border: #0e9ef7;
+    -fx-accent: #0e9ef7;
+}
+
+.progress-bar .bar{
+    -fx-background-color: #0e9ef7;
+    -fx-box-border: #0e9ef7;
+}
+
+.progress-bar .track{
+    -fx-background-color: white;
+    -fx-box-border: white;
+}
+
+#my-rectangle{
+    -fx-fill: #0e9ef7;
+    -fx-text-fill: white;
+    -fx-stroke: white;
+    -fx-font: bold;
+}
+
+#my-circle{
+    -fx-fill: #0e9ef7;
+    -fx-text-fill: white;
+    -fx-stroke: white;
+    -fx-font: bold;
+}
+
+.radio-button .radio{
+    -fx-background-insets: 0;
+    -fx-background-color: white;
+    -fx-border-color: #0e9ef7;
+}
+.radio-button .radio:hover{
+    -fx-border-color: #0e9ef7;
+    -fx-background-color: white;
+    -fx-border-radius: 50px;
+}
+
+.radio-button .radio:selected .radio{
+    -fx-border-color: #0e9ef7;
+    -fx-background-color: white;
+    -fx-border-radius: 50px;
+}
+
+   .choice-box .context-menu { -fx-background-color: black; }
+   .choice-box .menu-item:focused { -fx-background-color: #0e9ef7; }
+   .choice-box .menu-item > .label { -fx-text-fill: white; }
+   .choice-box .menu-item:focused > .label { -fx-text-fill: white; }
+   .choice-box > .label { -fx-text-fill: white; }
+   .progress-bar
