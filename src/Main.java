@@ -1,7 +1,6 @@
 /* AlgaT Projects made by Enea Guidi, Marco Tomasone and Luca Genova */
 
 /* IMPORT */
-import Classes.AlertBox;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +21,6 @@ public class Main extends Application {
         try {
             launch(args);
         } catch (Exception io)  {
-            new AlertBox("I/O Exceptions check that the directory is correct");
             io.printStackTrace();
         }
     }

@@ -11,7 +11,8 @@ Once the program started from the welcome screen you can choose between three di
   * **Test**: is a part where the user can exercise his knowledge with simple question to make sure he understood all the basic concept of the lessons, the exercise are interactive and aim to strengthen the user understanding of the concepts above
 
 ## How-To
-To start the application just compile the source code and enjoy, else you can directly run the.jar file on the JVM the AlgaT.jar can be found in AlgaT/productions/artifacts
+To start the application just compile the source code and enjoy, else you can directly run the.jar file on the JVM the AlgaT.jar can be found in AlgaT root directory.
+Please note that in oder to run this JAR file you should have installed JDK version 8 (probably lower will work as well) but higher won't because JavaFX is not automatically bundled inside (since is deprecated).
 
 ## Others and credits
 Please report any problem or issue, fell free to contribute to this project as you prefer. If you like this project and want to see some other of my works visit my [GitHub page](https://github.com/Horny-Milf-Near-You), check out also the other two member's page:
